@@ -31,21 +31,21 @@ const showcaseDetails: Record<string, {
 }> = {
   growthos: {
     scene: "个人品牌经营者和小型内容团队需要把定位、选题、草稿和复盘衔接起来。",
-    workflow: ["品牌画像", "确认策略", "选择选题", "编辑 Revision", "反馈与复评"],
+    workflow: ["品牌画像", "确认策略", "选择选题", "编辑内容版本", "反馈与复评"],
     capabilities: ["30 天选题计划", "人工确认门槛", "反馈驱动版本迭代"],
     proof: "三轮迭代有本地隔离流程和固定合成案例记录；第三轮表达边界复核为基线 2/5、候选 5/5。",
   },
   "novera-ai": {
     scene: "企业团队需要从分散的内部文档中找到答案，并在采取行动前回到原文核验。",
-    workflow: ["建立 Workspace", "导入知识文档", "提出问题", "关联来源", "查看回答"],
-    capabilities: ["跨文档检索", "来源引用", "Claim / Evidence"],
+    workflow: ["建立工作空间", "导入知识文档", "提出问题", "关联来源", "查看回答"],
+    capabilities: ["跨文档检索", "来源引用", "主张 / 证据"],
     proof: "固定合成语料的真实本地运行覆盖 20 份文档和 40 个问题；v3 对同一运行记录完成离线复评。",
   },
   evidra: {
     scene: "中文长文章作者、内容顾问和内容团队需要知道：一条观点为什么成立，以及下一步怎样修改。",
-    workflow: ["提交文章", "识别读者问题", "分析 Claim", "定位 Evidence", "证据状态判断", "生成修改建议", "人工修改与修改清单", "Recheck 重新验证", "前后对比", "本地审查历史"],
-    capabilities: ["Claim / Evidence", "可编辑建议", "Recheck 对比"],
-    proof: "公开 Preview 与源码可访问；历史运行记录包含分析、修改与 Recheck 案例，最新版本完整流程未另行重跑。",
+    workflow: ["提交文章", "识别读者问题", "分析主张", "定位证据", "证据状态判断", "生成修改建议", "人工修改与修改清单", "再次检查", "前后对比", "本地审查历史"],
+    capabilities: ["主张 / 证据", "可编辑建议", "再次检查对比"],
+    proof: "公开 Preview 与源码可访问；历史运行记录呈现文章分析、修改与再次检查流程，当前案例按这组记录展示产品迭代。",
   },
 };
 
@@ -124,14 +124,14 @@ export function ProjectShowcase() {
           <Link href={`/work/${project.slug}`} className="button button-dark">完整项目介绍与案例 <span>↗</span></Link>
           <div className="showcase-secondary-links">
             {project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span>↗</span></a> : <span className="showcase-unavailable">在线体验待补充</span>}
-            {project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">GitHub 源码 <span>↗</span></a> : <span className="showcase-unavailable">GitHub 待补充</span>}
+            {project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码仓库 <span>↗</span></a> : <span className="showcase-unavailable">源码仓库待补充</span>}
           </div>
         </div>
       </div>
 
       <div className="showcase-visual" aria-label={`${project.title}产品视觉`}>
         {screenshot ? <figure className="showcase-screenshot"><Image src={screenshot.src} alt={screenshot.alt} fill sizes="(max-width: 900px) 100vw, 55vw" priority /><figcaption>{screenshot.caption}</figcaption></figure> : <><ProductPreview variant={previewVariant} /><p className="showcase-visual-caption">产品界面示意 / 非实机截图</p></>}
-        <div className="showcase-visual-index" aria-hidden="true"><span>PRODUCT / {String(activeIndex + 1).padStart(2, "0")}</span><i /></div>
+        <div className="showcase-visual-index" aria-hidden="true"><span>产品 / {String(activeIndex + 1).padStart(2, "0")}</span><i /></div>
         <p className="showcase-proof"><span>实现与验证</span>{details.proof}</p>
       </div>
     </article>

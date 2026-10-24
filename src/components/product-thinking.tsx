@@ -1,48 +1,68 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, type KeyboardEvent } from "react";
-import { projects } from "@/content/portfolio";
+import { thoughtArticles } from "@/content/thinking";
 
-const selectedProjects = ["growthos", "novera-ai", "evidra"]
-  .map((slug) => projects.find((project) => project.slug === slug))
-  .filter((project): project is (typeof projects)[number] => Boolean(project));
+const relatedProjects = ["novera-ai", "growthos", "growthos", "novera-ai"];
 
 export function ProductThinking() {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const project = selectedProjects[active];
-  const decision = project.decisions[0];
+  const article = thoughtArticles[active];
+
+  const selectArticle = (index: number) => setActive((index + thoughtArticles.length) % thoughtArticles.length);
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
     if (direction) {
       event.preventDefault();
-      const next = (index + direction + selectedProjects.length) % selectedProjects.length;
-      setActive(next);
+      const next = (index + direction + thoughtArticles.length) % thoughtArticles.length;
+      selectArticle(next);
       tabRefs.current[next]?.focus();
     } else if (event.key === "Home" || event.key === "End") {
       event.preventDefault();
-      const next = event.key === "Home" ? 0 : selectedProjects.length - 1;
-      setActive(next);
+      const next = event.key === "Home" ? 0 : thoughtArticles.length - 1;
+      selectArticle(next);
       tabRefs.current[next]?.focus();
     }
   };
 
-  return <div className="product-thinking" aria-label="精选产品决策">
-    <div className="thinking-tabs" role="tablist" aria-label="选择产品决策">
-      {selectedProjects.map((item, index) => <button key={item.slug} type="button" role="tab" id={`thinking-tab-${item.slug}`} aria-selected={active === index} aria-controls="thinking-panel" tabIndex={active === index ? 0 : -1} ref={(node) => { tabRefs.current[index] = node; }} onKeyDown={(event) => handleKeyDown(event, index)} onClick={() => setActive(index)}>
-        <span>{item.title}</span><i>{item.category}</i>
+  return <div className="product-thinking" aria-label="产品思考专栏">
+    <div className="thinking-archive" role="tablist" aria-label="选择文章">
+      {thoughtArticles.map((item, index) => <button
+        key={item.slug}
+        type="button"
+        role="tab"
+        id={`thinking-tab-${item.slug}`}
+        aria-selected={active === index}
+        aria-controls="thinking-article"
+        tabIndex={active === index ? 0 : -1}
+        ref={(node) => { tabRefs.current[index] = node; }}
+        onKeyDown={(event) => handleKeyDown(event, index)}
+        onClick={() => selectArticle(index)}
+        className={index === 0 ? "thinking-archive-feature" : "thinking-archive-item"}
+      >
+        <span className="thinking-archive-number">{item.number}</span>
+        <span className="thinking-archive-title">{item.title}</span>
+        <span className="thinking-archive-summary">{item.summary}</span>
+        <span className="thinking-archive-meta">阅读文章 <i aria-hidden="true">↗</i></span>
       </button>)}
     </div>
-    <article className={`thinking-decision thinking-${project.accent}`} id="thinking-panel" role="tabpanel" aria-labelledby={`thinking-tab-${project.slug}`} tabIndex={0} key={project.slug}>
-      <header className="thinking-decision-heading"><span>{project.title}</span><small>{project.category}</small><h3>{decision.decision}</h3></header>
-      <div className="thinking-decision-grid">
-        <section><span>决策背景与用户任务</span><p>{project.problem}</p></section>
-        <section><span>判断依据</span><p>{decision.why}</p></section>
-        <section><span>方案取舍</span><p>{decision.tradeoff}</p></section>
-        <section><span>如何进入产品</span><p>{project.workflow.join(" → ")}</p></section>
-        <section><span>验证方式</span><p>{project.validationEvidence[0]}</p></section>
-        <section><span>当前可说明的结果</span><p>{decision.result}</p></section>
+
+    <article className="thinking-article" id="thinking-article" role="tabpanel" aria-labelledby={`thinking-tab-${article.slug}`} tabIndex={0} key={article.slug}>
+      <header className="thinking-article-header">
+        <div><span className="thinking-article-number">{article.number} / 产品思考</span></div>
+        <h3>{article.title}</h3>
+        <p>{article.summary}</p>
+      </header>
+      <blockquote>{article.quote}</blockquote>
+      <div className="thinking-article-body">
+        {article.sections.map((section) => <section key={section.heading}><h4>{section.heading}</h4>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}
       </div>
+      <footer className="thinking-article-footer">
+        <p>{article.closing}</p>
+        <Link href={`/work/${relatedProjects[active]}`}>阅读相关项目案例 <span aria-hidden="true">↗</span></Link>
+      </footer>
     </article>
   </div>;
 }

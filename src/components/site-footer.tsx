@@ -9,11 +9,11 @@ const footerLinks = [
 export function SiteFooter() {
   return <footer className="site-footer">
     <div className="container footer-inner">
-      <div className="footer-brand"><Link href="/" aria-label="回到杜佳琪作品集首页">杜佳琪</Link><span>人工智能产品构建者</span></div>
+      <div className="footer-brand"><Link href="/" aria-label="回到杜嘉奇首页">杜嘉奇</Link><span>个人产品实践</span></div>
       <nav className="footer-projects" aria-label="项目案例">
         {footerLinks.map(([href, label]) => <Link href={href} key={href}>{label}</Link>)}
       </nav>
-      <div className="footer-meta"><span>问题 → 产品 → 证据</span><span>© 2026 杜佳琪</span></div>
+      <div className="footer-meta"><span>问题 · 判断 · 试做</span><span>© 2026 杜嘉奇</span></div>
     </div>
   </footer>;
 }

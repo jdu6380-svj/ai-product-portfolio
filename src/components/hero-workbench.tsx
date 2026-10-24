@@ -61,7 +61,7 @@ export function HeroWorkbench() {
         </div>
         <span className="workbench-live"><i /> 交互原型</span>
       </div>
-      <div className="workbench-annotation" aria-hidden="true"><span>PRODUCT PREVIEW</span><i /><span>01 / 03</span></div>
+      <div className="workbench-annotation" aria-hidden="true"><span>产品预览</span><i /><span>01 / 03</span></div>
       <div className="workbench-preview" key={activeId}>
         <ProductPreview variant={activeId} compact />
       </div>
