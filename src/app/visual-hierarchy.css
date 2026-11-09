@@ -1,0 +1,420 @@
+/* Content hierarchy pass.
+   Hero and contact remain open compositions; content-heavy regions gain quiet
+   surfaces so copy, evidence and controls sit on a readable plane. */
+:root {
+  --surface-white: rgba(255, 255, 255, .82);
+  --surface-solid: #fbfdff;
+  --surface-line: color-mix(in srgb, var(--line-strong) 66%, transparent);
+  --surface-shadow: 0 16px 42px rgba(39, 73, 107, .08);
+}
+
+/* Homepage content regions. */
+.five-view .five-projects .five-section-head,
+.five-view .five-project-tabs,
+.five-view .five-project-panel,
+.five-view .five-method .five-section-head,
+.five-view .five-method .build-method,
+.five-view .five-thinking .five-section-head,
+.five-view .five-thinking .thinking-archive-item {
+  border-color: var(--surface-line);
+}
+
+.five-view .five-projects .five-section-head,
+.five-view .five-method .five-section-head,
+.five-view .five-method .build-method,
+.five-view .five-thinking .five-section-head,
+.five-view .five-thinking .thinking-archive-item {
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+.five-view .five-projects .five-section-head {
+  margin-bottom: 22px;
+  padding: 24px 28px;
+}
+
+.five-view .five-method .five-section-head,
+.five-view .five-thinking .five-section-head {
+  margin-bottom: 22px;
+  padding: 24px 28px;
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+.five-view .five-project-tabs {
+  overflow: hidden;
+  border: 1px solid var(--surface-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .58);
+}
+
+.five-view .five-project-panel {
+  margin-top: 22px;
+  padding: clamp(24px, 3.4vw, 48px);
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+.five-view .five-method .build-method {
+  padding: 26px;
+}
+
+.five-view .five-method .build-method-rail,
+.five-view .five-method .build-method-detail,
+.five-view .five-method .build-method-capabilities,
+.five-view .five-method .build-method-projects {
+  border-color: var(--surface-line);
+}
+
+.five-view .five-method .build-method-rail {
+  overflow: hidden;
+  border: 1px solid var(--surface-line);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .58);
+}
+
+.five-view .five-method .build-method-detail {
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid var(--surface-line);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .72);
+}
+
+.five-view .five-method .build-method-capabilities,
+.five-view .five-method .build-method-projects {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 22px 0 0;
+}
+
+.five-view .five-method .build-method-capability-grid > div,
+.five-view .five-method .build-method-projects a {
+  padding-right: 14px;
+  padding-left: 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .42);
+}
+
+.five-view .five-thinking .thinking-archive {
+  gap: 20px;
+}
+
+.five-view .five-thinking .thinking-archive-item {
+  min-height: 360px;
+  padding: 0 22px 22px;
+  border-top: 1px solid var(--surface-line);
+}
+
+.five-view .five-thinking .thinking-archive-item:hover,
+.five-view .five-thinking .thinking-archive-item:focus-visible {
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 20px 48px rgba(39, 73, 107, .12);
+}
+
+/* Case study chapters: section surfaces keep long reading paths legible. */
+.case-story-content {
+  --case-surface: rgba(255, 255, 255, .82);
+  --case-surface-soft: rgba(247, 251, 254, .9);
+}
+
+.case-story-content .case-section {
+  margin-bottom: 24px;
+  padding: 34px clamp(22px, 3.4vw, 48px) 58px;
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--case-surface);
+  box-shadow: var(--surface-shadow);
+}
+
+.case-hero {
+  background: color-mix(in srgb, var(--paper-deep) 76%, #fff);
+}
+
+.case-hero-grid {
+  padding: clamp(24px, 4vw, 52px);
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+.case-hero .case-hero-shot,
+.case-hero .product-preview {
+  overflow: hidden;
+  border: 1px solid var(--surface-line);
+  border-radius: 13px;
+  background: var(--surface-solid);
+  box-shadow: 0 10px 28px rgba(39, 73, 107, .07);
+}
+
+.case-facts {
+  margin-top: 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--surface-line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .74);
+}
+
+.case-story-content .case-section + .case-section {
+  padding-top: 34px;
+  border-top: 1px solid var(--surface-line);
+}
+
+.case-story-content .section-kicker {
+  margin-bottom: 20px;
+}
+
+.case-story-content .story-side-note,
+.case-story-content .overview-facts,
+.case-story-content .case-tutorial,
+.case-story-content .case-context-grid,
+.case-story-content .case-ai-note,
+.case-story-content .case-outcome-panel {
+  border-color: var(--surface-line);
+  background: var(--case-surface-soft);
+}
+
+.case-tutorial {
+  max-width: 680px;
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px solid var(--surface-line);
+  border-radius: 12px;
+}
+
+.case-tutorial span,
+.case-context-grid span,
+.case-ai-note > span,
+.case-evidence-note {
+  color: var(--story-accent, var(--accent));
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+}
+
+.case-tutorial p {
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.case-context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 18px;
+  margin-top: 38px;
+  padding: 0 18px;
+  border: 1px solid var(--surface-line);
+  border-radius: 13px;
+}
+
+.case-context-grid > div {
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--surface-line);
+}
+
+.case-context-grid > div:last-child {
+  grid-column: 1 / -1;
+  border-bottom: 0;
+}
+
+.case-context-grid p {
+  max-width: 560px;
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.case-flow-diagram {
+  display: grid;
+  gap: 15px;
+  margin-top: 38px;
+}
+
+.case-flow-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 14px;
+  min-width: 0;
+}
+
+.case-flow-node::before {
+  position: absolute;
+  top: 35px;
+  bottom: -16px;
+  left: 17px;
+  border-left: 1px solid var(--surface-line);
+  content: "";
+}
+
+.case-flow-node:last-child::before { display: none; }
+
+.case-flow-node > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--story-accent, var(--accent)) 36%, white);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--story-accent, var(--accent));
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.case-flow-node-panel {
+  min-width: 0;
+  border: 1px solid var(--surface-line);
+  border-radius: 11px;
+  background: var(--surface-solid);
+  box-shadow: 0 7px 20px rgba(39, 73, 107, .045);
+  padding: 18px 20px;
+}
+
+.case-flow-node-panel > strong {
+  display: block;
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.case-flow-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.case-flow-columns p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.case-flow-columns b {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--story-accent, var(--accent));
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.case-product-decisions { margin-top: 34px; }
+.case-product-decisions > span { color: var(--story-accent, var(--accent)); font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }
+.case-product-decisions > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.case-product-decisions article { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 12px; padding: 17px; border: 1px solid var(--surface-line); border-radius: 12px; background: var(--case-surface-soft); }
+.case-product-decisions article > b { color: var(--story-accent, var(--accent)); font-family: var(--mono); font-size: 11px; }
+.case-product-decisions h3 { margin: 0; color: var(--ink); font-size: 17px; line-height: 1.4; }
+.case-product-decisions p { margin: 9px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+.case-product-decisions p strong { color: var(--ink); font-weight: 600; }
+
+.case-ai-note {
+  margin-top: 34px;
+  padding: 20px;
+  border: 1px solid var(--surface-line);
+  border-radius: 13px;
+}
+
+.case-ai-note .ai-workflow-table {
+  margin-top: 14px;
+}
+
+.case-outcome-panel {
+  margin-top: 36px;
+  padding: 22px;
+  border: 1px solid var(--surface-line);
+  border-radius: 14px;
+}
+
+.case-evidence-note {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 1.7;
+}
+
+.case-story-content .decision-card,
+.case-story-content .story-test-cases article,
+.case-story-content .iteration-story-list article,
+.case-story-content .validation-evidence,
+.case-story-content .next-step-panel,
+.case-story-content .story-visual-grid figure {
+  border-color: var(--surface-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .68);
+}
+
+.case-story-content .decision-card,
+.case-story-content .story-test-cases article {
+  box-shadow: 0 8px 24px rgba(39, 73, 107, .05);
+}
+
+.case-story-content .iteration-story-list article,
+.case-story-content .validation-evidence,
+.case-story-content .next-step-panel {
+  padding: 20px;
+}
+
+.thinking-page-body section {
+  margin-bottom: 18px;
+  padding: 24px 26px;
+  border: 1px solid var(--surface-line);
+  border-radius: 14px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+.thinking-page-header {
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid var(--surface-line);
+  border-radius: 16px;
+  background: var(--surface-white);
+  box-shadow: var(--surface-shadow);
+}
+
+@media (max-width: 900px) {
+  .case-flow-columns { grid-template-columns: 1fr; gap: 12px; }
+  .case-product-decisions > div { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .five-view .five-projects .five-section-head,
+  .five-view .five-method .build-method { padding: 20px; }
+  .five-view .five-project-panel { padding: 20px; border-radius: 14px; }
+  .five-view .five-thinking .thinking-archive-item { min-height: 0; padding-right: 18px; padding-left: 18px; }
+  .case-story-content .case-section { padding: 25px 18px 42px; border-radius: 14px; }
+  .case-context-grid { grid-template-columns: 1fr; padding: 0 14px; }
+  .case-context-grid > div:last-child { grid-column: auto; border-bottom: 0; }
+  .case-flow-diagram { grid-template-columns: 1fr; padding: 10px; }
+  .case-flow-diagram { gap: 13px; margin-left: -2px; }
+  .case-flow-node { grid-template-columns: 30px minmax(0, 1fr); gap: 10px; }
+  .case-flow-node::before { left: 14px; }
+  .case-flow-node > span { width: 29px; height: 29px; font-size: 10px; }
+  .case-flow-node-panel { padding: 15px; }
+  .case-flow-node-panel > strong { font-size: 17px; }
+  .case-story-content .iteration-story-list article,
+  .case-story-content .validation-evidence,
+  .case-story-content .next-step-panel { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .five-view .five-project-panel,
+  .five-view .five-thinking .thinking-archive-item,
+  .case-story-content .decision-card { box-shadow: none; }
+}

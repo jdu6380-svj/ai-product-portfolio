@@ -2,84 +2,73 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 
-const stages = [
+export const buildStages = [
   {
     number: "01",
-    title: "问题定义",
-    short: "先说清要改变的用户任务。",
-    purpose: "先明确用户正在完成什么、卡在哪里，再讨论界面或模型。将问题与方案分开，给后续选择留出空间。",
-    practice: ["描述用户现在要完成的任务与卡点", "明确问题边界、已有条件和不在本轮处理的内容", "把目标写成可以观察的行为或结果"],
-    output: "目标用户、任务、问题边界与可观察的预期结果。",
+    english: "Discover",
+    title: "需求分析",
+    short: "用户真正需要解决什么？",
+    purpose: "从真实任务和当前做法开始，明确目标用户、触发场景、主要卡点与问题边界。先分开观察到的事实和仍待验证的判断，再决定是否值得进入产品定义。",
+    practice: ["记录用户、场景、任务与当前替代方案", "识别时间、错误、协作或返工成本", "区分已知证据与待验证假设"],
+    output: "一条有场景、有边界、可以继续验证的问题定义。",
   },
   {
     number: "02",
-    title: "用户场景",
-    short: "梳理输入、判断点与后续行动。",
-    purpose: "将问题放回具体工作现场，梳理使用者从什么输入开始、需要做哪些操作，以及什么结果能帮助其继续完成任务。",
-    practice: ["明确目标使用者与触发场景", "串联输入、关键操作、判断点和后续行动", "检查流程是否覆盖正常状态与需要用户介入的状态"],
-    output: "从输入、关键操作到结果与交接点的任务路径。",
+    english: "Define",
+    title: "产品定义与方案设计",
+    short: "应该解决什么，为什么这样设计？",
+    purpose: "把问题转成可被检验的产品目标，比较不同方案对流程、用户控制权和实现成本的影响，并明确 AI 参与的边界。",
+    practice: ["写清目标、核心流程与本轮范围", "比较规则、模板、AI 等方案的价值与成本", "预先定义关键状态、人工确认点与验证信号"],
+    output: "有边界的 MVP 流程、关键产品决策与验收条件。",
   },
   {
     number: "03",
-    title: "产品决策",
-    short: "确定本轮范围与方案取舍。",
-    purpose: "把问题分析转成产品范围和交互取舍。每项能力都要对应用户任务，同时考虑实现成本、理解成本与可验证性。",
-    practice: ["明确产品定位、核心价值和本轮范围", "比较备选方案对流程、信息呈现和用户控制权的影响", "用具体理由记录选择及其取舍"],
-    output: "有边界的 MVP 流程、关键页面与决策依据。",
+    english: "Build",
+    title: "开发与交付",
+    short: "如何把产品方案转化为可用功能？",
+    purpose: "把产品判断拆成可实现的任务，协调模型、程序规则和界面状态，优先打通核心路径，并在交付前建立可重复的测试与验收条件。",
+    practice: ["拆解页面、接口、模型与数据状态", "明确模型、程序和用户各自负责什么", "用真实截图、固定任务和边界状态完成验收"],
+    output: "可操作的核心流程、实现边界与可追溯的验收记录。",
   },
   {
     number: "04",
-    title: "AI 工作流",
-    short: "明确模型、程序与用户的分工。",
-    purpose: "明确 AI 何时检索、分析或生成，用户何时确认、修改或回到来源；让模型输出能自然进入下一步，而不是停留在一段孤立回答。",
-    practice: ["定义输入数据、上下文来源和结果结构", "区分模型处理、产品规则与用户判断的职责", "为结果提供来源、状态或可继续操作的入口"],
-    output: "从输入、模型处理到用户检查与下一步行动的流程。",
-  },
-  {
-    number: "05",
-    title: "实现与测试",
-    short: "实现核心路径并设定验收条件。",
-    purpose: "将产品流程拆成可实现的任务，与 GPT、Codex 等工具协作完成分析、编码和排查，再由我检查范围、关键状态和实际行为。",
-    practice: ["按用户可见的任务切分实现顺序与验收条件", "覆盖核心路径、边界输入和必要错误状态", "实际操作页面，并结合自动化检查验证预期行为"],
-    output: "可操作的核心流程与对应检查结果。",
-  },
-  {
-    number: "06",
-    title: "迭代与验证",
-    short: "对照预期，决定下一步。",
-    purpose: "先定义成功条件，再用具体任务检查实际表现。将观察结果与预期逐项对照，区分已验证结论、待确认原因和后续计划。",
-    practice: ["为每项验证写明输入、预期行为和通过标准", "分别记录已验证结果、实际依据与后续计划", "优先处理有证据支持且影响核心任务的改进"],
-    output: "验证记录、决策理由与下一轮测试。",
+    english: "Validate & Iterate",
+    title: "验证与迭代",
+    short: "如何判断产品有效，以及下一步改什么？",
+    purpose: "用预先约定的标准检查功能、AI 输出和用户任务是否改善，再把观察到的结果转成下一轮问题和改动。结论始终标明证据来源与适用范围。",
+    practice: ["使用固定任务、样本和明确的通过标准", "结合自动检查、结构化评价与人工复核", "记录版本差异，形成可比较的下一轮基线"],
+    output: "能够追溯输入、标准、结果和限制的验证记录，以及下一轮优化假设。",
   },
 ];
 
 export function BuildMethod() {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const stage = stages[active];
+  const stage = buildStages[active];
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
     if (direction) {
       event.preventDefault();
-      const next = (index + direction + stages.length) % stages.length;
+      const next = (index + direction + buildStages.length) % buildStages.length;
       setActive(next);
       tabRefs.current[next]?.focus();
     } else if (event.key === "Home" || event.key === "End") {
       event.preventDefault();
-      const next = event.key === "Home" ? 0 : stages.length - 1;
+      const next = event.key === "Home" ? 0 : buildStages.length - 1;
       setActive(next);
       tabRefs.current[next]?.focus();
     }
   };
 
   return <div className="build-method" aria-label="产品构建方法">
-    <div className="build-method-rail" role="tablist" aria-label="产品构建阶段" aria-orientation="vertical">
-      {stages.map((item, index) => <button key={item.number} type="button" role="tab" id={`build-method-tab-${item.number}`} aria-selected={active === index} aria-controls="build-method-detail" tabIndex={active === index ? 0 : -1} ref={(node) => { tabRefs.current[index] = node; }} onKeyDown={(event) => handleKeyDown(event, index)} onClick={() => setActive(index)}>
-        <span>{item.number}</span><strong>{item.title}</strong><small>{item.short}</small><i aria-hidden="true" />
+    <div className="method-core" aria-hidden="true"><span>工作路径</span><strong>问题<br />→ 产品<br />→ 验证</strong><i /></div>
+    <div className="build-method-rail" role="tablist" aria-label="产品构建阶段" aria-orientation="horizontal">
+      {buildStages.map((item, index) => <button key={item.number} type="button" role="tab" id={`build-method-tab-${item.number}`} aria-selected={active === index} aria-controls="build-method-detail" tabIndex={active === index ? 0 : -1} ref={(node) => { tabRefs.current[index] = node; }} onKeyDown={(event) => handleKeyDown(event, index)} onClick={() => setActive(index)}>
+        <span>{item.number}</span><strong>{item.english}</strong><b>{item.title}</b><small>{item.short}</small><i aria-hidden="true" />
       </button>)}
     </div>
     <article className="build-method-detail" id="build-method-detail" role="tabpanel" aria-labelledby={`build-method-tab-${stage.number}`} tabIndex={0} key={stage.number}>
-      <div className="build-method-detail-heading"><span>{stage.number} / 产品构建</span><h3>{stage.title}</h3><p>{stage.purpose}</p></div>
+      <div className="build-method-detail-heading"><span>{stage.number} / {stage.english}</span><h3>{stage.title}</h3><p>{stage.purpose}</p></div>
       <div className="build-method-detail-columns">
         <section><h4>推进方式</h4><ul>{stage.practice.map((item) => <li key={item}>{item}</li>)}</ul></section>
         <section><h4>阶段产出</h4><p>{stage.output}</p></section>

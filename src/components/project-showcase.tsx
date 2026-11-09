@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useRef, useState, ViewTransition, type KeyboardEvent, type PointerEvent } from "react";
 import { projects } from "@/content/portfolio";
 import { ProductPreview } from "@/components/product-preview";
 
@@ -109,17 +109,18 @@ export function ProjectShowcase() {
       ><span>{item.title}</span><i>{String(index + 1).padStart(2, "0")}</i></button>)}
     </div>
 
+    <div className="showcase-stack" aria-hidden="true">
+      {showcaseProjects.map((item, index) => index === activeIndex ? null : <div className={`showcase-stack-card ${index < activeIndex ? "is-behind-left" : "is-behind-right"}`} key={item.slug}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.title}</strong><small>{item.category}</small></div>)}
+    </div>
+
     <article className={`showcase-panel showcase-${project.accent}`} id="showcase-panel" role="tabpanel" aria-labelledby={`showcase-tab-${project.slug}`} key={project.slug} onPointerDown={startSwipe} onPointerUp={endSwipe} onPointerCancel={() => { pointerStart.current = null; }}>
       <div className="showcase-copy">
         <div className="showcase-meta"><span>{String(activeIndex + 1).padStart(2, "0")} / 03</span><span>{project.category}</span></div>
-        <h3>{project.title}</h3>
+        <ViewTransition name={`project-title-${project.slug}`}><h3>{project.title}</h3></ViewTransition>
         <p className="showcase-positioning">{project.shortDescription}</p>
-        <p className="showcase-description">{project.description}</p>
         <div className="showcase-scene"><span>使用场景</span><p>{details.scene}</p></div>
         <div className="showcase-workflow"><span>核心工作流</span><div>{details.workflow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div></div>
         <div className="showcase-capabilities"><span>核心能力</span><div>{details.capabilities.map((item) => <b key={item}>{item}</b>)}</div></div>
-        <div className="showcase-role"><span>我的工作</span><p>{project.role}</p></div>
-        <div className="showcase-focus">{project.focus.slice(0, 4).map((item) => <span key={item}>{item}</span>)}</div>
         <div className="showcase-actions">
           <Link href={`/work/${project.slug}`} className="button button-dark">完整项目介绍与案例 <span>↗</span></Link>
           <div className="showcase-secondary-links">

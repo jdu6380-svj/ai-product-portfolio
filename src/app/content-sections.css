@@ -1,0 +1,53 @@
+/* Home content surfaces: four-stage method and editorial product insights. */
+.five-method .five-section-head h2 em { color: var(--accent); font-style: normal; }
+.build-method-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.build-method-rail button { min-height: 164px; gap: 0; }
+.build-method-rail button > strong { margin-top: 19px; color: var(--accent); font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: .03em; }
+.build-method-rail button > b { margin-top: 8px; color: var(--ink); font-size: 17px; font-weight: 650; line-height: 1.35; }
+.build-method-rail button > small { margin-top: 7px; font-size: 13px; line-height: 1.5; }
+.build-method-capabilities { display: grid; grid-template-columns: minmax(170px, .55fr) minmax(0, 1.45fr); gap: 32px; margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--portfolio-line); }
+.build-method-capability-intro { display: grid; align-content: start; gap: 10px; }
+.build-method-capability-intro span, .build-method-projects > span { color: var(--accent); font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.build-method-capability-intro strong { max-width: 15ch; color: var(--ink); font-size: 18px; line-height: 1.4; }
+.build-method-capability-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.build-method-capability-grid > div { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 6px 12px; padding: 15px 0; border-top: 1px solid var(--portfolio-line); }
+.build-method-capability-grid > div:nth-child(-n + 2) { border-top: 0; padding-top: 0; }
+.build-method-capability-grid span { color: var(--accent); font-family: var(--mono); font-size: 12px; }
+.build-method-capability-grid strong { color: var(--ink); font-size: 16px; font-weight: 650; }
+.build-method-capability-grid p { grid-column: 2; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+.build-method-projects { display: grid; grid-template-columns: minmax(170px, .55fr) minmax(0, 1.45fr); gap: 32px; margin-top: 38px; padding-top: 20px; border-top: 1px solid var(--portfolio-line); }
+.build-method-projects > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.build-method-projects a { display: grid; gap: 6px; padding: 0 0 13px; border-bottom: 1px solid var(--portfolio-line); color: var(--ink); transition: color 180ms ease, border-color 180ms ease, transform 180ms var(--motion-ui); }
+.build-method-projects a:hover, .build-method-projects a:focus-visible { border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+.build-method-projects strong { font-size: 15px; font-weight: 650; }
+.build-method-projects small { color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+.five-thinking .thinking-archive { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; border-top: 0; }
+.five-thinking .product-thinking { display: block; min-height: 0; height: auto; }
+.five-thinking .thinking-archive-item { display: grid; grid-column: auto; grid-template-columns: 1fr; grid-template-rows: auto auto auto 1fr auto auto; align-content: start; gap: 0; min-height: 340px; padding: 0 2px 0; border-top: 1px solid var(--portfolio-line); border-bottom: 0; }
+.five-thinking .thinking-archive-item > * { grid-column: auto; grid-row: auto; }
+.five-thinking .thinking-archive-item .thinking-archive-number { grid-row: auto; }
+.five-thinking .thinking-archive-item:hover { padding: 0 2px; background: transparent; }
+.thinking-archive-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 0 18px; }
+.thinking-archive-number { padding: 0; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; }
+.thinking-archive-arrow { color: var(--accent); font-size: 17px; transition: transform 180ms ease; }
+.thinking-archive-item:hover .thinking-archive-arrow { transform: translate(3px, -3px); }
+.five-thinking .thinking-archive-title { display: block; max-width: 18ch; font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 650; line-height: 1.35; }
+.thinking-archive-rule { display: block; width: 100%; margin: 19px 0 17px; border-top: 1px solid var(--portfolio-line); }
+.five-thinking .thinking-archive-summary { color: var(--muted); font-size: 15px; line-height: 1.75; }
+.thinking-archive-quote { display: block; margin-top: 22px; padding: 13px 14px; border-left: 2px solid var(--accent); background: color-mix(in srgb, var(--paper-deep) 72%, transparent); color: var(--ink); font-size: 14px; line-height: 1.6; }
+.five-thinking .thinking-archive-meta { margin-top: 16px; color: var(--accent); font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .build-method-capabilities, .build-method-projects { grid-template-columns: 1fr; gap: 18px; }
+  .build-method-capability-intro strong { max-width: none; }
+}
+@media (max-width: 680px) {
+  .build-method-rail { grid-template-columns: repeat(4, minmax(190px, 1fr)); overflow-x: auto; }
+  .build-method-capabilities { margin-top: 38px; }
+  .build-method-capability-grid { grid-template-columns: 1fr; }
+  .build-method-capability-grid > div:nth-child(2) { border-top: 1px solid var(--portfolio-line); padding-top: 15px; }
+  .build-method-projects > div { grid-template-columns: 1fr; gap: 12px; }
+  .five-thinking .thinking-archive { grid-template-columns: 1fr; gap: 22px; }
+  .five-thinking .thinking-archive-item { min-height: 0; padding-bottom: 22px; border-bottom: 1px solid var(--portfolio-line); }
+}

@@ -342,6 +342,7 @@ body{background:#fff}
 .site-footer{background:#f4f7fa;color:#6c7d8b;border-top:1px solid var(--line)}
 .scroll-reveal[data-ready="true"]{opacity:0;transform:translateY(36px);transition:opacity 900ms cubic-bezier(.2,.7,.2,1),transform 900ms cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
 .scroll-reveal[data-ready="true"][data-revealed="true"]{opacity:1;transform:none}
+.scroll-reveal[data-anchor-target="true"]{opacity:1;transform:none;transition:none}
 .scroll-reveal-child{opacity:0;transform:translateY(24px);transition:opacity 700ms cubic-bezier(.2,.7,.2,1),transform 700ms cubic-bezier(.2,.7,.2,1);transition-delay:var(--child-delay,0ms)}
 .scroll-reveal[data-revealed="true"] .scroll-reveal-child{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.scroll-reveal[data-ready="true"],.scroll-reveal-child{opacity:1;transform:none;transition:none}.scroll-reveal[data-ready="true"] .scroll-reveal-child{opacity:1;transform:none}.hero-workbench:hover{transform:none;box-shadow:0 26px 70px rgba(38,72,104,.11)}}
@@ -1188,6 +1189,13 @@ p,h1,h2,h3,h4,button,a{overflow-wrap:break-word}
 .thinking-article-footer a{display:inline-flex;flex:none;align-items:center;gap:7px;color:var(--accent-ink);font-size:14px;font-weight:600}
 .thinking-article-footer a span{transition:transform 160ms ease}
 .thinking-article-footer a:hover span{transform:translate(2px,-2px)}
+.thinking-relation{margin:26px 0 0;padding:18px 0 2px;border-top:1px solid var(--line-strong)}
+.thinking-relation-label{display:block;color:var(--electric);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.thinking-relation-track{display:grid;grid-template-columns:minmax(0,1.25fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:10px;margin-top:14px}
+.thinking-relation-track>span{display:grid;align-content:start;gap:7px;min-width:0;padding:13px 12px;border:1px solid #d8e2ec;border-radius:var(--radius-control);background:#f8fbfd}
+.thinking-relation-track b{color:var(--accent-ink);font-size:12px;font-weight:600}
+.thinking-relation-track i{color:var(--muted);font-size:12px;font-style:normal;line-height:1.45}
+.thinking-relation-track>em{align-self:center;color:var(--electric);font-family:var(--mono);font-size:15px;font-style:normal}
 .contact-links strong{margin-left:auto;color:#5a6474;font-size:13px;font-weight:500}
 .contact-links button span{color:#8b4163}
 .contact-link-row{display:flex;align-items:center;gap:10px;max-width:100%}
@@ -1220,6 +1228,8 @@ p,h1,h2,h3,h4,button,a{overflow-wrap:break-word}
   .thinking-article-body section:first-child{grid-column:auto}
   .thinking-article-body p{font-size:16px;line-height:1.8}
   .thinking-article-footer{flex-direction:column;gap:18px}
+  .thinking-relation-track{grid-template-columns:1fr;gap:6px}
+  .thinking-relation-track>em{justify-self:center;transform:rotate(90deg)}
   .contact-links strong{max-width:58%;overflow-wrap:anywhere;text-align:right}
   .contact-link-row>a,.contact-static{font-size:12px}
   .case-layout-growthos .story-heading-grid{grid-template-columns:1fr}
@@ -1236,4 +1246,126 @@ p,h1,h2,h3,h4,button,a{overflow-wrap:break-word}
 }
 @media(prefers-reduced-motion:reduce){
   .hero-project-links a,.thinking-archive button,.thinking-article,.thinking-article-footer a span{transition:none;animation:none}
+}
+
+/* 方案 A 视觉基础：真实产品截图作为前景，关系线只承担工作流说明。 */
+.hero-workbench{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid #b8cad8;
+  border-radius:var(--radius-feature);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.96),rgba(239,245,249,.94)),
+    repeating-linear-gradient(0deg,rgba(53,91,120,.035) 0 1px,transparent 1px 5px);
+  box-shadow:0 26px 72px rgba(31,73,111,.14),0 1px 0 rgba(255,255,255,.85) inset;
+}
+.hero-workbench::before{
+  position:absolute;
+  z-index:-1;
+  right:-18%;
+  bottom:-32%;
+  width:78%;
+  aspect-ratio:1;
+  border:1px solid rgba(36,88,211,.12);
+  border-radius:50%;
+  content:"";
+  transform:translate3d(var(--pointer-x),var(--pointer-y),0);
+  transition:transform 240ms ease-out;
+}
+.hero-workbench::after{inset:10px;border:1px solid rgba(36,88,211,.12);border-radius:calc(var(--radius-feature) - 7px)}
+.workbench-heading{position:relative;z-index:1;background:rgba(248,251,253,.72)}
+.workbench-annotation{position:relative;z-index:1;margin-top:4px}
+.workbench-preview{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:12px;
+  min-height:0;
+  padding:14px 18px 16px;
+  animation:soft-panel-enter 280ms var(--motion-ui) both;
+}
+.workbench-real-shot{
+  position:relative;
+  min-height:318px;
+  aspect-ratio:1.48;
+  margin:0;
+  overflow:hidden;
+  border:1px solid #c6d5df;
+  border-radius:var(--radius-panel);
+  background:#fff;
+  box-shadow:0 16px 32px rgba(39,75,105,.14),0 1px 0 #fff inset;
+  transform:translate3d(calc(var(--pointer-x) * .55),calc(var(--pointer-y) * .55),0);
+  transition:transform 220ms ease-out,box-shadow 260ms ease;
+}
+.workbench-real-shot img{object-fit:contain;transition:transform 320ms var(--motion-ui)}
+.workbench-real-shot figcaption{
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  padding:9px 12px;
+  background:rgba(246,250,252,.9);
+  color:#506476;
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.03em;
+}
+.workbench-reserved{
+  display:grid;
+  min-height:318px;
+  place-content:center;
+  gap:12px;
+  padding:32px;
+  border:1px dashed #9eb8c9;
+  border-radius:var(--radius-panel);
+  background:rgba(239,246,250,.78);
+  color:#60798a;
+  text-align:center;
+}
+.workbench-reserved span{color:#357ab0;font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.workbench-reserved strong{color:var(--ink);font-size:clamp(2.3rem,5vw,4rem);font-weight:520;letter-spacing:-.06em}
+.workbench-reserved p{max-width:28ch;margin:0 auto;font-size:13px;line-height:1.55}
+.workbench-relation{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  padding-top:2px;
+}
+.workbench-relation span{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:34px;
+  padding:7px 9px;
+  border:1px solid #c7d7e2;
+  border-radius:var(--radius-control);
+  background:rgba(255,255,255,.6);
+  color:#4c687c;
+  font-size:11px;
+}
+.workbench-relation i{color:var(--accent);font-family:var(--mono);font-size:9px;font-style:normal}
+.workbench-selector{position:relative;z-index:1;gap:6px;padding:6px;border-top:1px solid rgba(174,195,209,.8);background:rgba(239,245,249,.68)}
+.workbench-selector button{min-height:48px;border:1px solid transparent;border-radius:var(--radius-control);background:transparent;transition:background-color 180ms ease,color 180ms ease,border-color 180ms ease,transform 180ms var(--motion-ui)}
+.workbench-selector button:hover{border-color:#c7d8e5;background:rgba(255,255,255,.68);transform:translateY(-1px)}
+.workbench-selector button[aria-pressed="true"]{border-color:#c5d5ee;background:#fff;color:var(--accent-ink);box-shadow:0 3px 12px rgba(37,61,115,.09)}
+.workbench-selector button:active{transform:scale(.985)}
+.case-hero-shot{position:relative;overflow:hidden;aspect-ratio:1.36;margin:0;border:1px solid #c6d5df;border-radius:var(--radius-panel);background:#fff;box-shadow:0 18px 40px rgba(39,75,105,.13)}
+.case-hero-shot img{display:block;width:100%;height:100%;object-fit:contain}
+.case-hero-shot figcaption{position:absolute;right:0;bottom:0;left:0;padding:9px 12px;background:rgba(246,250,252,.92);color:#506476;font-family:var(--mono);font-size:9px}
+@media(max-width:900px){
+  .workbench-real-shot,.workbench-reserved{min-height:0}
+  .workbench-real-shot{aspect-ratio:1.42}
+}
+@media(max-width:560px){
+  .workbench-preview{padding:10px 8px 12px}
+  .workbench-real-shot{aspect-ratio:1.2;border-radius:var(--radius-surface)}
+  .workbench-reserved{padding:22px 14px;border-radius:var(--radius-surface)}
+  .workbench-relation{gap:5px}
+  .workbench-relation span{gap:5px;padding:6px;font-size:10px}
+  .case-hero-shot{aspect-ratio:1.22;border-radius:var(--radius-surface)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-workbench::before,.workbench-real-shot{transform:none;transition:none}
+  .workbench-real-shot img,.workbench-selector button{transition:none}
 }

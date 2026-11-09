@@ -14,6 +14,22 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollReve
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const anchorId = window.location.hash.slice(1);
+    const anchorTarget = anchorId ? document.getElementById(anchorId) : null;
+    if (anchorTarget?.closest(".scroll-reveal") === node) {
+      node.dataset.anchorTarget = "true";
+      node.dataset.ready = "true";
+      node.dataset.revealed = "true";
+      window.requestAnimationFrame(() => {
+        window.scrollTo({
+          top: window.scrollY + anchorTarget.getBoundingClientRect().top,
+          behavior: "instant",
+        });
+      });
+      return;
+    }
+
     node.dataset.ready = "true";
 
     const observer = new IntersectionObserver(

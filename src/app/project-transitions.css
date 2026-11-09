@@ -1,0 +1,79 @@
+/* Shared project title and image morphs are deliberately separate from the
+   section curtain and luminous contact transition. */
+::view-transition-group(.project-image-morph),
+::view-transition-group(.project-title-morph) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(.22, .72, .18, 1);
+}
+
+::view-transition-group(.project-image-morph) {
+  overflow: clip;
+  border-radius: 22px;
+}
+
+::view-transition-image-pair(.project-image-morph) {
+  animation: project-image-soften 520ms cubic-bezier(.22, .72, .18, 1) both;
+}
+
+::view-transition-old(.project-content-out) {
+  animation: project-content-exit 200ms cubic-bezier(.4, 0, 1, 1) both;
+}
+
+::view-transition-new(.project-content-in) {
+  animation: project-content-enter 330ms 110ms cubic-bezier(.22, .72, .18, 1) both;
+}
+
+::view-transition-old(.project-content-out),
+::view-transition-new(.project-content-in),
+::view-transition-old(.project-content-return),
+::view-transition-new(.project-content-return) {
+  pointer-events: none;
+}
+
+::view-transition-old(.project-content-return) {
+  animation: project-content-exit 190ms cubic-bezier(.4, 0, 1, 1) both;
+}
+
+::view-transition-new(.project-content-return) {
+  animation: project-content-enter 320ms 100ms cubic-bezier(.22, .72, .18, 1) both;
+}
+
+@keyframes project-content-exit {
+  to { opacity: 0; filter: blur(2px); }
+}
+
+@keyframes project-content-enter {
+  from { opacity: 0; filter: blur(2px); transform: translateY(10px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes project-image-soften {
+  35% { filter: blur(1.5px); }
+  to { filter: blur(0); }
+}
+
+@keyframes project-route-fallback {
+  from { opacity: .84; filter: blur(1px); transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+html.project-transition-fallback main#main-content {
+  animation: project-route-fallback 400ms cubic-bezier(.22, .72, .18, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.project-image-morph),
+  ::view-transition-group(.project-title-morph),
+  ::view-transition-image-pair(.project-image-morph),
+  ::view-transition-old(.project-content-out),
+  ::view-transition-new(.project-content-in),
+  ::view-transition-old(.project-content-return),
+  ::view-transition-new(.project-content-return) {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+
+  html.project-transition-fallback main#main-content {
+    animation: none;
+  }
+}
