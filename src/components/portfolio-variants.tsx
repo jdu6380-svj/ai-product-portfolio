@@ -42,6 +42,21 @@ const projectHighlights: Record<string, { responsibility: string; validation: st
 
 const stageAccent: Record<string, string> = { coral: "#d06f58", blue: "#5870c8", olive: "#6c8d76" };
 
+const homeProjectCopy: Record<string, { lead: string; description: string }> = {
+  growthos: {
+    lead: "串联品牌定位、选题、内容创作与反馈复盘，形成可追溯的 AI 内容生产闭环。",
+    description: "面向个人品牌经营者、创作者与小型内容团队。AI 辅助生成草稿和改进建议；创作者确认选题、编辑内容版本，并依据反馈复盘。",
+  },
+  "novera-ai": {
+    lead: "接入多格式文档，经结构化解析和向量检索，生成带原文依据的回答；资料不足时提示知识缺口。",
+    description: "面向企业知识工作者，将分散资料转化为可追溯的回答；解析置信度不足或知识缺失时，明确回答边界并保留人工复核。",
+  },
+  evidra: {
+    lead: "从文章提交、四维评估和原文证据定位，到人工修改与再次检查，形成完整审查闭环。",
+    description: "面向中文长文创作者与内容顾问，帮助他们在发布前定位读者问题和观点依据。AI 提供可核对的修改建议，作者决定是否采纳、完成编辑并再次复核。",
+  },
+};
+
 function SceneHeader({ id, label, title, note }: { id?: string; label: string; title: ReactNode; note?: string }) {
   return <div className="five-section-head"><span className="five-kicker">{label}</span><h2 id={id}>{title}</h2>{note ? <p>{note}</p> : null}</div>;
 }
@@ -100,8 +115,8 @@ function FiveProjectStage() {
           <div className="five-project-copy" style={{ "--project-accent": stageAccent[project.accent] } as CSSProperties}>
             <span className="five-project-meta">{project.index} / {project.status}</span>
             <ViewTransition name={`project-title-${project.slug}`} share="project-title-morph" default="none"><h3>{project.title}</h3></ViewTransition>
-            <p className="five-project-lead">{project.shortDescription}</p>
-            <p className="five-project-description">{project.description}</p>
+            <p className="five-project-lead">{homeProjectCopy[project.slug].lead}</p>
+            <p className="five-project-description">{homeProjectCopy[project.slug].description}</p>
             <div className="five-flow" aria-label={`${project.title}核心工作流`}>{flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div>
             <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>测试与迭代</dt><dd>{projectHighlights[project.slug].validation}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
           <div className="five-project-links"><Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-dark-link">完整项目介绍与案例 <span aria-hidden="true">↗</span></Link>{project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span aria-hidden="true">↗</span></a> : null}{project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码 <span aria-hidden="true">↗</span></a> : null}</div>
@@ -123,7 +138,7 @@ function FiveProjectStage() {
 
 function FiveMethod() {
   return <section className="five-section five-method" id="method" aria-labelledby="five-method-title">
-    <div className="five-container"><SceneHeader id="five-method-title" label="03 / How I Build Products" title={<>从问题出发，<em>以验证驱动迭代。</em></>} note="A systematic approach to designing, building and improving AI products." /><BuildMethod /></div>
+    <div className="five-container"><SceneHeader id="five-method-title" label="03 / How I Build Products" title={<>从问题出发，<em>以验证驱动迭代。</em></>} note="用系统化方法设计、构建并持续改进 AI 产品。" /><BuildMethod /></div>
   </section>;
 }
 
