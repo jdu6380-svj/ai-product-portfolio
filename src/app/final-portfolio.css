@@ -201,7 +201,7 @@ body.scene-curtain-revealing .five-projects .five-project-panel { animation: cur
 .five-project-tabs button > span { grid-row: span 2; align-self: center; color: var(--accent); font-family: var(--mono); font-size: 10px; }
 .five-project-tabs button strong { font-size: 18px; font-weight: 650; line-height: 1.3; }
 .five-project-tabs button small { color: inherit; font-size: 14px; line-height: 1.45; }
-.five-project-panel { display: grid; grid-template-columns: minmax(280px,.9fr) minmax(0,1.1fr); gap: clamp(36px,6vw,84px); align-items: center; min-height: 510px; padding: 40px 0 22px; animation: final-panel-in 420ms cubic-bezier(.2,.72,.18,1) both; }
+.five-project-panel { display: grid; grid-template-columns: minmax(280px,.9fr) minmax(0,1.1fr); gap: clamp(36px,6vw,84px); align-items: center; min-height: 510px; padding: 40px 0 22px; animation: final-panel-in 500ms cubic-bezier(.2,.72,.18,1) both; }
 .five-project-copy h3 { margin: 12px 0 0; color: var(--ink); font-size: clamp(2.7rem, 4.4vw, 4.5rem); font-weight: 700; line-height: 1.04; letter-spacing: -.045em; }
 .five-project-meta { color: var(--accent); font-family: var(--mono); font-size: 11px; }
 .five-project-lead { max-width: 520px; margin: 20px 0 0; color: var(--ink); font-size: 19px; font-weight: 550; line-height: 1.55; }
@@ -288,6 +288,18 @@ body.scene-curtain-revealing .five-projects .five-project-panel { animation: cur
   transition: opacity 680ms cubic-bezier(.2,.72,.18,1), transform 680ms cubic-bezier(.2,.72,.18,1);
 }
 .five-view .scroll-reveal[data-ready="true"][data-revealed="true"] { transform: none; }
+.five-view > .scroll-reveal:has(.five-projects),
+.five-view > .scroll-reveal:has(.five-method),
+.five-view > .scroll-reveal:has(.five-thinking) {
+  transform: translateY(12px);
+  transition-duration: 600ms;
+}
+
+.five-view > .scroll-reveal:has(.five-projects)[data-revealed="true"],
+.five-view > .scroll-reveal:has(.five-method)[data-revealed="true"],
+.five-view > .scroll-reveal:has(.five-thinking)[data-revealed="true"] {
+  transform: none;
+}
 .five-view .five-project-tabs button:hover,
 .five-view .five-project-tabs button[aria-selected="true"] { transform: translateY(-2px); }
 .five-view .five-project-tabs button:focus-visible,
