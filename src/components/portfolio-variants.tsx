@@ -152,7 +152,7 @@ function FiveContact() {
 
   return <section className="five-section five-contact" id="contact" aria-labelledby="five-contact-title">
     <div className="five-contact-space" aria-hidden="true" />
-    <div className="five-container five-contact-layout"><ContactHeadline id="five-contact-title" /><div className="five-contact-actions"><a className="five-email" href={`mailto:${email}`}>{email} <span aria-hidden="true">↗</span></a><button className="five-copy-email" type="button" onClick={copyEmail}>{copyState === "copied" ? "已复制" : "复制邮箱"}</button><p className="five-copy-status" data-state={copyState} role="status" aria-live="polite">{copyState === "copied" ? "邮箱已复制到剪贴板" : copyState === "failed" ? "复制失败，请手动选择邮箱地址" : ""}</p></div></div>
+    <div className="five-container five-contact-layout"><ContactHeadline id="five-contact-title" /><div className="five-contact-actions"><a className="five-email" href={`mailto:${email}`}>{email} <span aria-hidden="true">↗</span></a><a className="five-email" href="/du-jiaqi-resume.pdf" download>下载简历 PDF <span aria-hidden="true">↓</span></a><button className="five-copy-email" type="button" onClick={copyEmail}>{copyState === "copied" ? "已复制" : "复制邮箱"}</button><p className="five-copy-status" data-state={copyState} role="status" aria-live="polite">{copyState === "copied" ? "邮箱已复制到剪贴板" : copyState === "failed" ? "复制失败，请手动选择邮箱地址" : ""}</p></div></div>
   </section>;
 }
 
