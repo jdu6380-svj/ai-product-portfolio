@@ -292,6 +292,7 @@ export function SceneEffects() {
     const hero = fiveView?.querySelector<HTMLElement>(".five-hero");
     const projectSection = document.getElementById("five-projects");
     const thinkingSection = document.getElementById("thinking");
+    const finalThinkingPerspective = thinkingSection?.querySelector<HTMLElement>(".thinking-perspective:last-child");
     const contactSection = document.getElementById("contact");
 
     const startAtHeroBoundary = () => {
@@ -300,16 +301,13 @@ export function SceneEffects() {
       return true;
     };
 
-    const startAtContactBoundary = (delta: number) => {
-      if (!thinkingSection || !contactSection || contactTransitionPlayed) return false;
-      const contactTop = contactSection.getBoundingClientRect().top;
+    const startAtContactBoundary = () => {
+      if (!thinkingSection || !finalThinkingPerspective || !contactSection || contactTransitionPlayed) return false;
+      // Preserve natural scrolling until the final perspective has left the
+      // viewport; only the next downward input may then enter the contact scene.
       const thinkingRect = thinkingSection.getBoundingClientRect();
-      // Intercept the first downward gesture while the thinking section is
-      // the active scene. A small fixed boundary misses high-resolution
-      // trackpad impulses, which can cross the contact section in one event.
-      const inThinkingScene = thinkingRect.top <= window.innerHeight * 0.45 && thinkingRect.bottom > window.innerHeight * 0.18;
-      const boundary = Math.max(window.innerHeight * 1.25, Math.abs(delta) * 1.1 + 90);
-      if (!inThinkingScene || contactTop > boundary || contactTop < -window.innerHeight * 0.55) return false;
+      const inThinkingScene = thinkingRect.top <= window.innerHeight * 0.45 && thinkingRect.bottom > 0;
+      if (!inThinkingScene || finalThinkingPerspective.getBoundingClientRect().bottom > 0) return false;
       startLuminousTransition(contactSection, "#contact");
       return true;
     };
@@ -325,7 +323,7 @@ export function SceneEffects() {
         event.preventDefault();
         return;
       }
-      if (startAtContactBoundary(event.deltaY)) event.preventDefault();
+      if (startAtContactBoundary()) event.preventDefault();
     };
 
     const onTouchStart = (event: TouchEvent) => {
@@ -340,7 +338,7 @@ export function SceneEffects() {
       }
       const currentY = event.touches[0]?.clientY;
       if (touchStartY === null || currentY === undefined || touchStartY - currentY < 18) return;
-      if (startAtHeroBoundary() || startAtContactBoundary(touchStartY - currentY)) event.preventDefault();
+      if (startAtHeroBoundary() || startAtContactBoundary()) event.preventDefault();
     };
 
     const onTouchEnd = () => { touchStartY = null; };
@@ -366,7 +364,7 @@ export function SceneEffects() {
       if (thinkingSection && contactSection) {
         const distance = contactSection.getBoundingClientRect().top;
         const threshold = isPageStep ? window.innerHeight * 1.25 : 150;
-        if (distance <= threshold && distance > -window.innerHeight * 0.55 && startAtContactBoundary(threshold)) event.preventDefault();
+        if (distance <= threshold && distance > -window.innerHeight * 0.55 && startAtContactBoundary()) event.preventDefault();
       }
     };
 
