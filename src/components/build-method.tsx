@@ -11,6 +11,7 @@ export const buildStages = [
     purpose: "从真实任务和当前做法开始，明确目标用户、触发场景、主要卡点与问题边界。先分开观察到的事实和仍待验证的判断，再决定是否值得进入产品定义。",
     practice: ["记录用户、场景、任务与当前替代方案", "识别时间、错误、协作或返工成本", "区分已知证据与待验证假设"],
     output: "一条有场景、有边界、可以继续验证的问题定义。",
+    example: "GrowthOS、Novera AI 与 Evidra 都先从创作者、知识工作者或作者的具体任务和卡点切入。",
   },
   {
     number: "02",
@@ -20,6 +21,7 @@ export const buildStages = [
     purpose: "把问题转成可被检验的产品目标，比较不同方案对流程、用户控制权和实现成本的影响，并明确 AI 参与的边界。",
     practice: ["写清目标、核心流程与本轮范围", "比较规则、模板、AI 等方案的价值与成本", "预先定义关键状态、人工确认点与验证信号"],
     output: "有边界的 MVP 流程、关键产品决策与验收条件。",
+    example: "Novera AI 将答案拆成主张、证据与来源；GrowthOS 保留创作者对选题和版本的确认。",
   },
   {
     number: "03",
@@ -29,6 +31,7 @@ export const buildStages = [
     purpose: "把产品判断拆成可实现的任务，协调模型、程序规则和界面状态，优先打通核心路径，并在交付前建立可重复的测试与验收条件。",
     practice: ["拆解页面、接口、模型与数据状态", "明确模型、程序和用户各自负责什么", "用真实截图、固定任务和边界状态完成验收"],
     output: "可操作的核心流程、实现边界与可追溯的验收记录。",
+    example: "GrowthOS 落地六阶段内容流程；Novera AI 把检索结果接入可核验的证据契约。",
   },
   {
     number: "04",
@@ -38,6 +41,7 @@ export const buildStages = [
     purpose: "用预先约定的标准检查功能、AI 输出和用户任务是否改善，再把观察到的结果转成下一轮问题和改动。结论始终标明证据来源与适用范围。",
     practice: ["使用固定任务、样本和明确的通过标准", "结合自动检查、结构化评价与人工复核", "记录版本差异，形成可比较的下一轮基线"],
     output: "能够追溯输入、标准、结果和限制的验证记录，以及下一轮优化假设。",
+    example: "GrowthOS 使用固定合成案例，Novera AI 做 v3 离线复评，Evidra 标明历史 Preview 记录不是业务结果。",
   },
 ];
 
@@ -73,6 +77,7 @@ export function BuildMethod() {
         <section><h4>推进方式</h4><ul>{stage.practice.map((item) => <li key={item}>{item}</li>)}</ul></section>
         <section><h4>阶段产出</h4><p>{stage.output}</p></section>
       </div>
+      <aside className="build-method-example"><h4>项目实例</h4><p>{stage.example}</p></aside>
     </article>
   </div>;
 }

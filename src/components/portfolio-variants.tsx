@@ -22,20 +22,23 @@ const projectFlows: Record<string, string[]> = {
   "novera-ai": ["文档解析", "检索上下文", "来源引用", "任务交接"],
   evidra: ["文章输入", "主张证据", "修改建议", "再次检查"],
 };
-const projectHighlights: Record<string, { responsibility: string; validation: string; boundary: string }> = {
+const projectHighlights: Record<string, { responsibility: string; validationType: string; validation: string; boundary: string }> = {
   growthos: {
     responsibility: "产品定位与 MVP、六阶段内容流程、三类结构化反馈、Prompt 迭代与验收",
+    validationType: "本地合成集 · 工程测试",
     validation: "5 个固定合成案例的基线/候选对照；34 个测试文件、172 项通过、1 项跳过",
     boundary: "AI 提供策略、草稿与改进建议；创作者确认选题和版本，输入输出均有风险门禁",
   },
   "novera-ai": {
     responsibility: "企业知识场景与 MVP、多格式 RAG、答案—主张—证据—来源契约",
-    validation: "本地固定集：20 份合成文档、40 道问题、60 条有效证据；v3 离线复评",
+    validationType: "本地合成集 · 离线复评",
+    validation: "20 份合成文档、40 道问题、60 条有效证据；v3 离线复评",
     boundary: "系统检索和核验引用；缺失知识不补猜，低置信资料由知识管理员复核",
   },
   evidra: {
     responsibility: "四维质量评估、观点与原文证据关联、修改清单和再次复核流程",
-    validation: "一篇非敏感文章的历史 Preview 记录 75 → 86；单独评估证据状态",
+    validationType: "历史 Preview 示例 · 非业务结果",
+    validation: "一篇非敏感文章记录 75 → 86；单独评估证据状态",
     boundary: "AI 提出诊断，作者决定采纳并亲自编辑；提交前拦截敏感及高风险内容",
   },
 };
@@ -103,7 +106,7 @@ function FiveProjectStage() {
             <p className="five-project-lead">{project.shortDescription}</p>
             <p className="five-project-description">{project.description}</p>
             <div className="five-flow" aria-label={`${project.title}核心工作流`}>{flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div>
-            <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>测试与迭代</dt><dd>{projectHighlights[project.slug].validation}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
+            <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>验证证据</dt><dd><span className="five-evidence-type">{projectHighlights[project.slug].validationType}</span>{projectHighlights[project.slug].validation}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
           <div className="five-project-links"><Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-dark-link">完整项目介绍与案例 <span aria-hidden="true">↗</span></Link>{project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span aria-hidden="true">↗</span></a> : null}{project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码 <span aria-hidden="true">↗</span></a> : null}</div>
           </div>
           <div className="five-project-visual">

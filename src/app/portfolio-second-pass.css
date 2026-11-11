@@ -383,3 +383,107 @@ html.portfolio-home-route body { background: var(--paper); }
   .button-dark:hover,
   .button-dark:active { transform: none; }
 }
+
+/* Final scoped refinements for the three middle sections. Keep the hero,
+   contact scene, shared variables and route transitions outside this block. */
+.five-view .five-project-panel { animation-duration: 280ms; }
+.five-view .five-project-highlights dd {
+  color: #46536a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.five-view .five-evidence-type {
+  display: block;
+  margin-bottom: 3px;
+  color: #3154c6;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .02em;
+}
+.five-view .five-project-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.five-view .five-project-tabs button:focus-visible,
+.five-view .five-method .build-method-rail button:focus-visible {
+  outline: 3px solid rgba(49, 92, 245, .42);
+  outline-offset: 3px;
+}
+.five-view .five-project-visual figure {
+  aspect-ratio: 16 / 10;
+  height: auto;
+  min-height: 0;
+}
+.five-view .thinking-perspective-content > p {
+  color: #46536a;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.five-view .build-method-detail {
+  animation: portfolio-panel-in 260ms ease both;
+}
+.five-view .build-method-example {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(99, 119, 151, .16);
+}
+.five-view .build-method-example h4 {
+  margin: 0 0 7px;
+  color: #3154c6;
+  font-size: 14px;
+  font-weight: 700;
+}
+.five-view .build-method-example p {
+  max-width: 70ch;
+  margin: 0;
+  color: #46536a;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .five-view .five-project-visual { order: initial; grid-row: auto; }
+  .five-view .five-method .build-method-rail { grid-auto-rows: auto; }
+  .five-view .five-method .build-method-rail button,
+  .five-view .five-method .build-method-rail button + button {
+    min-height: 116px;
+    height: auto;
+    padding: 16px 12px;
+  }
+  .five-view .five-method .build-method-rail button > strong { margin-top: 4px; }
+}
+
+@media (max-width: 600px) {
+  .five-view .five-project-visual figure {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+  .five-view .five-project-links { gap: 10px 14px; }
+  .five-view .five-project-links a { width: 100%; justify-content: flex-start; }
+  .five-view .thinking-perspective-content > p { font-size: 17px; line-height: 1.75; }
+  .five-view .thinking-perspective-keywords li { font-size: 13px; }
+  .five-view .five-method .build-method-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 8px;
+  }
+  .five-view .five-method .build-method-rail button,
+  .five-view .five-method .build-method-rail button + button {
+    min-height: 104px;
+    align-self: start;
+    padding: 13px 9px;
+    border-radius: 15px;
+  }
+  .five-view .five-method .build-method-rail button > strong { margin-top: 0; font-size: 14px; }
+  .five-view .five-method .build-method-rail button > b { margin-top: 5px; font-size: 16px; }
+  .five-view .five-method .build-method-rail button > small { margin-top: 5px; font-size: 14px; line-height: 1.4; }
+  .five-view .build-method-example { margin-top: 20px; padding-top: 15px; }
+  .five-view .build-method-example p { font-size: 15px; line-height: 1.65; }
+  .five-view .five-evidence-type { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .five-view .five-project-panel,
+  .five-view .build-method-detail { animation: none; }
+}
