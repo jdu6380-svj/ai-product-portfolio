@@ -91,6 +91,9 @@ html.portfolio-home-route body { background: var(--paper); }
   background: rgba(255, 255, 255, .72);
   box-shadow: 0 20px 58px rgba(47, 66, 101, .075);
 }
+@media (min-width: 901px) {
+  .five-view .five-project-panel { align-items: start; }
+}
 .five-view .five-project-visual figure {
   border: 0;
   border-radius: 22px;
