@@ -59,6 +59,7 @@ export function SceneEffects() {
     let depthTimer = 0;
     let transitionLocked = false;
     let transitionDestination: HTMLElement | null = null;
+    let heroTransitionStage: "ready" | "entered" = window.scrollY <= 1 ? "ready" : "entered";
     let contactTransitionPlayed = window.location.hash === "#contact";
     let touchStartY: number | null = null;
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -209,6 +210,7 @@ export function SceneEffects() {
     };
 
     const onScroll = () => {
+      if (!transitionLocked && window.scrollY <= 1) heroTransitionStage = "ready";
       if (!frame) frame = window.requestAnimationFrame(updateDepth);
     };
 
@@ -296,7 +298,8 @@ export function SceneEffects() {
     const contactSection = document.getElementById("contact");
 
     const startAtHeroBoundary = () => {
-      if (!hero || !projectSection || hero.getBoundingClientRect().bottom < 24 || hero.getBoundingClientRect().top > 4) return false;
+      if (heroTransitionStage !== "ready" || !hero || !projectSection || hero.getBoundingClientRect().bottom < 24 || hero.getBoundingClientRect().top > 4) return false;
+      heroTransitionStage = "entered";
       startCurtainTransition(projectSection, "#five-projects");
       return true;
     };
@@ -375,6 +378,7 @@ export function SceneEffects() {
         ? document.getElementById(window.location.hash.slice(1))
         : hero;
       if (window.location.hash !== "#contact") contactTransitionPlayed = false;
+      if (!window.location.hash && destination === hero) heroTransitionStage = "ready";
       if (destination) {
         window.requestAnimationFrame(() => {
           const top = window.scrollY + destination.getBoundingClientRect().top;

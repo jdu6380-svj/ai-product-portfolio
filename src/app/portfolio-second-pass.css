@@ -495,3 +495,36 @@ html.portfolio-home-route body { background: var(--paper); }
   .five-view .five-project-panel,
   .five-view .build-method-detail { animation: none; }
 }
+
+/* Keep the method selector tied to the portfolio's blue accent across breakpoints. */
+.five-view .five-method .build-method-rail button > span,
+.five-view .five-method .build-method-rail button[aria-selected="true"] > span {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.five-view .five-method .build-method-rail button[aria-selected="true"] > span {
+  background: var(--accent);
+  color: #fff;
+}
+.five-view .five-method .build-method-rail button[aria-selected="true"] {
+  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+}
+.five-view .five-method .build-method-rail button[aria-selected="true"]::after {
+  background: var(--accent);
+}
+.five-view .five-method .build-method-detail > .build-method-example {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+@media (min-width: 901px) {
+  .five-view .five-method .build-method-detail > .build-method-example {
+    display: grid;
+    grid-template-columns: minmax(120px, .25fr) minmax(0, 1.75fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .five-view .five-method .build-method-example h4 {
+    margin: 0;
+  }
+}
