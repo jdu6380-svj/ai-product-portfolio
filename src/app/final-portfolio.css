@@ -393,75 +393,13 @@ body.scene-curtain-revealing .five-projects .five-project-panel { animation: cur
   .thinking-page-body p { font-size: 16px; line-height: 1.8; }
 }
 
-/* A luminous contact reveal is intentionally distinct from the vertical curtain. */
-.scene-luminous {
-  position: fixed;
-  z-index: 61;
-  inset: 0;
-  overflow: clip;
-  pointer-events: none;
-  visibility: hidden;
-  opacity: 0;
+.five-view > .scroll-reveal.contact-transition-reveal[data-ready="true"] {
+  transform: none;
+  transition: opacity 240ms ease-out;
 }
-.scene-luminous::before {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(118deg, color-mix(in srgb, var(--accent) 84%, #fff), color-mix(in srgb, var(--accent) 64%, #18213a));
-  box-shadow: inset 0 1px rgba(255,255,255,.68), inset 0 -1px rgba(255,255,255,.3);
-  content: "";
-  transform: translateY(101%);
-  will-change: transform;
-}
-.scene-luminous::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background: rgba(255,255,255,.76);
-  box-shadow: 0 0 24px rgba(255,255,255,.48);
-  content: "";
-  transform: translateY(101%);
-  will-change: transform;
-}
-.five-view .five-thinking { transition: filter 280ms cubic-bezier(.2,.72,.18,1), opacity 280ms cubic-bezier(.2,.72,.18,1); }
-body.scene-luminous-covering .scene-luminous,
-body.scene-luminous-paused .scene-luminous,
-body.scene-luminous-revealing .scene-luminous { visibility: visible; opacity: 1; }
-body.scene-luminous-covering .scene-luminous::before,
-body.scene-luminous-covering .scene-luminous::after { animation: luminous-cover 370ms cubic-bezier(.32,.72,0,1) both; }
-body.scene-luminous-paused .scene-luminous::before,
-body.scene-luminous-paused .scene-luminous::after { transform: translateY(0); }
-body.scene-luminous-revealing .scene-luminous::before,
-body.scene-luminous-revealing .scene-luminous::after { animation: luminous-reveal 370ms cubic-bezier(.32,.72,0,1) both; }
-body.scene-luminous-covering .five-thinking,
-body.scene-luminous-paused .five-thinking { filter: blur(2px); opacity: .32; transition: filter 280ms ease, opacity 280ms ease; }
-body.scene-luminous-paused .scroll-reveal:has(.five-contact),
-body.scene-luminous-revealing .scroll-reveal:has(.five-contact) { opacity: 1; transform: none; transition: none; }
-body.scene-luminous-revealing .five-contact .five-contact-layout { animation: luminous-contact-in 340ms 30ms cubic-bezier(.2,.72,.18,1) both; }
-body.scene-luminous-revealing .five-contact .five-contact-space { animation: luminous-contact-light 370ms ease both; }
-@keyframes luminous-cover {
-  from { transform: translateY(101%); }
-  to { transform: translateY(0); }
-}
-@keyframes luminous-reveal {
-  from { transform: translateY(0); }
-  to { transform: translateY(-101%); }
-}
-@keyframes luminous-contact-in {
-  from { opacity: .3; transform: translateY(12px); filter: blur(3px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-@keyframes luminous-contact-light {
-  from { opacity: .3; }
-  to { opacity: 1; }
-}
+.five-view > .scroll-reveal.contact-transition-reveal[data-ready="true"][data-revealed="true"] { transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .five-view .five-thinking { transition: none; }
-  .scene-luminous { display: none; }
-  body.scene-luminous-covering .five-thinking,
-  body.scene-luminous-paused .five-thinking { filter: none; opacity: 1; }
-  body.scene-luminous-revealing .five-contact .five-contact-layout { animation: none; }
+  .five-view > .scroll-reveal.contact-transition-reveal[data-ready="true"] { opacity: 1; transition: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

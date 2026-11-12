@@ -11,6 +11,7 @@ import { ProductThinking } from "@/components/product-thinking";
 import { ResearchProjectWall } from "@/components/research-project-wall";
 import { ResearchWorkingIndex } from "@/components/research-working-index";
 import { ProductPreview } from "@/components/product-preview";
+import { GrowthOSExperienceLink } from "@/components/growthos-experience-link";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { useProjectSelection } from "@/components/portfolio-navigation";
@@ -107,8 +108,8 @@ function FiveProjectStage() {
             <p className="five-project-description">{project.description}</p>
             <div className="five-flow" aria-label={`${project.title}核心工作流`}>{flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div>
             <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>验证证据</dt><dd>{project.slug === "growthos" ? <><span className="five-evidence-type">模型对照评测</span>{projectHighlights.growthos.modelEvaluation}<span className="five-evidence-type">工程回归测试</span>{projectHighlights.growthos.engineeringTests}</> : <>{projectHighlights[project.slug].validationType ? <span className="five-evidence-type">{projectHighlights[project.slug].validationType}</span> : null}{projectHighlights[project.slug].validation}</>}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
-          <div className="five-project-links"><Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-dark-link">完整项目介绍与案例 <span aria-hidden="true">↗</span></Link>{project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span aria-hidden="true">↗</span></a> : null}{project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码 <span aria-hidden="true">↗</span></a> : null}</div>
-          {project.slug === "growthos" ? <p className="five-preview-access-note">GrowthOS 在线体验当前需要登录；项目案例页提供完整操作截图与流程说明。</p> : null}
+          <div className="five-project-links"><Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-dark-link">完整项目介绍与案例 <span aria-hidden="true">↗</span></Link>{project.demoUrl ? project.slug === "growthos" ? <GrowthOSExperienceLink /> : <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span aria-hidden="true">↗</span></a> : null}{project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码 <span aria-hidden="true">↗</span></a> : null}</div>
+          {project.slug === "growthos" ? <p className="five-preview-access-note">GrowthOS 在线体验需要登录；项目案例页提供完整操作截图与流程说明。</p> : null}
           </div>
           <div className="five-project-visual">
             <Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-project-image-link" aria-label={`查看 ${project.title} 完整案例`}>
@@ -183,7 +184,7 @@ function FiveView() {
           </div>
         </section>
       </ScrollReveal>
-      <ScrollReveal><FiveContact /></ScrollReveal>
+      <ScrollReveal className="contact-transition-reveal"><FiveContact /></ScrollReveal>
     </div>
   );
 }

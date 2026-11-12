@@ -10,25 +10,14 @@ export function SceneEffects() {
     document.documentElement.classList.toggle("portfolio-home-route", isPortfolioRoute);
     if (!isPortfolioRoute) {
       document.documentElement.classList.remove("scene-transition-active", "scene-curtain-active", "scene-page-hidden");
-      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing", "scene-luminous-covering", "scene-luminous-paused", "scene-luminous-revealing");
-      const markContactNavigation = (event: MouseEvent) => {
-        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        const target = event.target as HTMLElement | null;
-        const link = target?.closest<HTMLAnchorElement>("a[href]");
-        if (!link) return;
-        const url = new URL(link.href, window.location.href);
-        if (url.origin === window.location.origin && url.pathname === "/" && url.hash === "#contact") {
-          document.documentElement.dataset.portfolioContactReveal = "true";
-        }
-      };
-      document.addEventListener("click", markContactNavigation, true);
-      return () => document.removeEventListener("click", markContactNavigation, true);
+      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing");
+      return;
     }
     const sections = Array.from(document.querySelectorAll<HTMLElement>(".portfolio-scene, .five-section"));
     const fiveView = document.querySelector<HTMLElement>(".five-view");
     if (!fiveView && sections.length === 0) {
       document.documentElement.classList.remove("scene-transition-active", "scene-curtain-active", "scene-page-hidden");
-      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing", "scene-luminous-covering", "scene-luminous-paused", "scene-luminous-revealing");
+      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing");
       return;
     }
     const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
@@ -53,22 +42,15 @@ export function SceneEffects() {
     let coverTimer = 0;
     let revealStartTimer = 0;
     let revealTimer = 0;
-    let luminousCoverTimer = 0;
-    let luminousRevealStartTimer = 0;
-    let luminousRevealTimer = 0;
     let depthTimer = 0;
     let transitionLocked = false;
     let transitionDestination: HTMLElement | null = null;
     let heroTransitionStage: "ready" | "entered" = window.scrollY <= 1 ? "ready" : "entered";
-    let contactTransitionPlayed = window.location.hash === "#contact";
     let touchStartY: number | null = null;
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const curtainCoverDuration = 350;
     const curtainPauseDuration = 100;
     const curtainRevealDuration = 350;
-    const luminousCoverDuration = 370;
-    const luminousPauseDuration = 100;
-    const luminousRevealDuration = 370;
 
     const setSectionLocation = (destination: HTMLElement, href: string) => {
       if (window.location.hash !== href) window.history.pushState(window.history.state, "", href);
@@ -78,7 +60,7 @@ export function SceneEffects() {
       if (reveal) reveal.dataset.revealed = "true";
     };
 
-    const finishTransition = (kind: "scene-curtain" | "scene-luminous") => {
+    const finishTransition = () => {
       const destination = transitionDestination;
       if (destination) {
         const destinationTop = window.scrollY + destination.getBoundingClientRect().top;
@@ -86,7 +68,7 @@ export function SceneEffects() {
         const reveal = destination.closest<HTMLElement>(".scroll-reveal");
         if (reveal) reveal.dataset.revealed = "true";
       }
-      document.body.classList.remove(`${kind}-covering`, `${kind}-paused`, `${kind}-revealing`);
+      document.body.classList.remove("scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing");
       document.documentElement.classList.remove("scene-transition-active", "scene-curtain-active");
       transitionLocked = false;
       transitionDestination = null;
@@ -102,7 +84,6 @@ export function SceneEffects() {
       transitionLocked = true;
       transitionDestination = destination;
       document.documentElement.classList.add("scene-transition-active", "scene-curtain-active");
-      document.body.classList.remove("scene-luminous-covering", "scene-luminous-paused", "scene-luminous-revealing");
       document.body.classList.remove("scene-curtain-paused", "scene-curtain-revealing", "scene-curtain-covering");
       document.body.classList.add("scene-curtain-covering");
       if (window.location.hash !== href) window.history.pushState(window.history.state, "", href);
@@ -117,48 +98,16 @@ export function SceneEffects() {
         revealStartTimer = window.setTimeout(() => {
           document.body.classList.remove("scene-curtain-paused");
           document.body.classList.add("scene-curtain-revealing");
-          revealTimer = window.setTimeout(() => finishTransition("scene-curtain"), curtainRevealDuration);
+          revealTimer = window.setTimeout(finishTransition, curtainRevealDuration);
         }, curtainPauseDuration);
       }, curtainCoverDuration);
     };
 
-    const startLuminousTransition = (destination: HTMLElement, href: string) => {
-      if (transitionLocked) return;
-      if (destination.id === "contact") contactTransitionPlayed = true;
-      if (reduceMotionQuery.matches) {
-        setSectionLocation(destination, href);
-        return;
-      }
-
-      transitionLocked = true;
-      transitionDestination = destination;
-      document.documentElement.classList.add("scene-transition-active");
-      document.body.classList.remove("scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing");
-      document.body.classList.remove("scene-luminous-paused", "scene-luminous-revealing", "scene-luminous-covering");
-      document.body.classList.add("scene-luminous-covering");
-      if (window.location.hash !== href) window.history.pushState(window.history.state, "", href);
-
-      luminousCoverTimer = window.setTimeout(() => {
-        const destinationTop = window.scrollY + destination.getBoundingClientRect().top;
-        window.scrollTo({ top: Math.max(0, destinationTop), behavior: "instant" });
-        const reveal = destination.closest<HTMLElement>(".scroll-reveal");
-        if (reveal) reveal.dataset.revealed = "true";
-        document.body.classList.remove("scene-luminous-covering");
-        document.body.classList.add("scene-luminous-paused");
-        luminousRevealStartTimer = window.setTimeout(() => {
-          document.body.classList.remove("scene-luminous-paused");
-          document.body.classList.add("scene-luminous-revealing");
-          luminousRevealTimer = window.setTimeout(() => finishTransition("scene-luminous"), luminousRevealDuration);
-        }, luminousPauseDuration);
-      }, luminousCoverDuration);
-    };
-
     const cancelTransition = () => {
-      for (const timer of [coverTimer, revealStartTimer, revealTimer, luminousCoverTimer, luminousRevealStartTimer, luminousRevealTimer]) {
+      for (const timer of [coverTimer, revealStartTimer, revealTimer]) {
         if (timer) window.clearTimeout(timer);
       }
-      finishTransition("scene-curtain");
-      finishTransition("scene-luminous");
+      finishTransition();
     };
 
     const onVisibilityChange = () => {
@@ -187,9 +136,6 @@ export function SceneEffects() {
         document.documentElement.style.setProperty("--scene-shift", `${spaceShift.toFixed(2)}px`);
 
         const hero = fiveView.querySelector<HTMLElement>(".five-hero");
-        if (contactTransitionPlayed && thinkingSection && window.scrollY < thinkingSection.offsetTop + Math.min(120, window.innerHeight * .15)) {
-          contactTransitionPlayed = false;
-        }
         if (hero) {
           const heroProgress = reduceMotionQuery.matches
             ? 0
@@ -285,33 +231,15 @@ export function SceneEffects() {
       if (link.dataset.sceneTransition === "hero") {
         event.preventDefault();
         startCurtainTransition(destination, href);
-      } else if (hash === "contact" && fiveView) {
-        event.preventDefault();
-        startLuminousTransition(destination, href);
       }
     };
 
     const hero = fiveView?.querySelector<HTMLElement>(".five-hero");
     const projectSection = document.getElementById("five-projects");
-    const thinkingSection = document.getElementById("thinking");
-    const finalThinkingPerspective = thinkingSection?.querySelector<HTMLElement>(".thinking-perspective:last-child");
-    const contactSection = document.getElementById("contact");
-
     const startAtHeroBoundary = () => {
       if (heroTransitionStage !== "ready" || !hero || !projectSection || hero.getBoundingClientRect().bottom < 24 || hero.getBoundingClientRect().top > 4) return false;
       heroTransitionStage = "entered";
       startCurtainTransition(projectSection, "#five-projects");
-      return true;
-    };
-
-    const startAtContactBoundary = () => {
-      if (!thinkingSection || !finalThinkingPerspective || !contactSection || contactTransitionPlayed) return false;
-      // Preserve natural scrolling until the final perspective has left the
-      // viewport; only the next downward input may then enter the contact scene.
-      const thinkingRect = thinkingSection.getBoundingClientRect();
-      const inThinkingScene = thinkingRect.top <= window.innerHeight * 0.45 && thinkingRect.bottom > 0;
-      if (!inThinkingScene || finalThinkingPerspective.getBoundingClientRect().bottom > 0) return false;
-      startLuminousTransition(contactSection, "#contact");
       return true;
     };
 
@@ -326,7 +254,6 @@ export function SceneEffects() {
         event.preventDefault();
         return;
       }
-      if (startAtContactBoundary()) event.preventDefault();
     };
 
     const onTouchStart = (event: TouchEvent) => {
@@ -341,7 +268,7 @@ export function SceneEffects() {
       }
       const currentY = event.touches[0]?.clientY;
       if (touchStartY === null || currentY === undefined || touchStartY - currentY < 18) return;
-      if (startAtHeroBoundary() || startAtContactBoundary()) event.preventDefault();
+      if (startAtHeroBoundary()) event.preventDefault();
     };
 
     const onTouchEnd = () => { touchStartY = null; };
@@ -364,11 +291,6 @@ export function SceneEffects() {
         event.preventDefault();
         return;
       }
-      if (thinkingSection && contactSection) {
-        const distance = contactSection.getBoundingClientRect().top;
-        const threshold = isPageStep ? window.innerHeight * 1.25 : 150;
-        if (distance <= threshold && distance > -window.innerHeight * 0.55 && startAtContactBoundary()) event.preventDefault();
-      }
     };
 
     const onPopState = () => {
@@ -377,7 +299,6 @@ export function SceneEffects() {
       const destination = window.location.hash
         ? document.getElementById(window.location.hash.slice(1))
         : hero;
-      if (window.location.hash !== "#contact") contactTransitionPlayed = false;
       if (!window.location.hash && destination === hero) heroTransitionStage = "ready";
       if (destination) {
         window.requestAnimationFrame(() => {
@@ -397,10 +318,6 @@ export function SceneEffects() {
       window.addEventListener("keydown", onKeyDown);
       window.addEventListener("popstate", onPopState);
     }
-    if (fiveView && window.location.hash === "#contact" && document.documentElement.dataset.portfolioContactReveal === "true" && contactSection) {
-      delete document.documentElement.dataset.portfolioContactReveal;
-      window.requestAnimationFrame(() => startLuminousTransition(contactSection, "#contact"));
-    }
     return () => {
       document.documentElement.classList.remove("portfolio-home-route");
       if (frame) window.cancelAnimationFrame(frame);
@@ -408,13 +325,10 @@ export function SceneEffects() {
       if (coverTimer) window.clearTimeout(coverTimer);
       if (revealStartTimer) window.clearTimeout(revealStartTimer);
       if (revealTimer) window.clearTimeout(revealTimer);
-      if (luminousCoverTimer) window.clearTimeout(luminousCoverTimer);
-      if (luminousRevealStartTimer) window.clearTimeout(luminousRevealStartTimer);
-      if (luminousRevealTimer) window.clearTimeout(luminousRevealTimer);
       if (depthTimer) window.clearTimeout(depthTimer);
       document.documentElement.classList.remove("scene-curtain-active", "scene-transition-active");
       document.documentElement.classList.remove("scene-page-hidden");
-      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing", "scene-luminous-covering", "scene-luminous-paused", "scene-luminous-revealing");
+      document.body.classList.remove("scene-transitioning", "scene-curtain-covering", "scene-curtain-paused", "scene-curtain-revealing");
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       fiveView?.removeEventListener("pointermove", onPointerMove);
@@ -431,5 +345,5 @@ export function SceneEffects() {
     };
   }, [isPortfolioRoute]);
 
-  return isPortfolioRoute ? <><div className="scene-curtain" aria-hidden="true" /><div className="scene-luminous" aria-hidden="true" /></> : null;
+  return isPortfolioRoute ? <div className="scene-curtain" aria-hidden="true" /> : null;
 }
