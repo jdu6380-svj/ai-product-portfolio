@@ -101,25 +101,27 @@ function FiveProjectStage() {
       </div>
       <div className="five-project-stage">
         <article className="five-project-panel" id="five-project-panel" role="tabpanel" aria-labelledby={`five-project-tab-${project.slug}`} aria-live="polite" key={project.slug}>
-          <div className="five-project-copy" style={{ "--project-accent": stageAccent[project.accent] } as CSSProperties}>
-            <span className="five-project-meta">{project.index} / {project.status}</span>
-            <ViewTransition name={`project-title-${project.slug}`} share="project-title-morph" default="none"><h3>{project.title}</h3></ViewTransition>
-            <p className="five-project-lead">{project.shortDescription}</p>
-            <p className="five-project-description">{project.description}</p>
-            <div className="five-flow" aria-label={`${project.title}核心工作流`}>{flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div>
-            <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>验证证据</dt><dd>{project.slug === "growthos" ? <><span className="five-evidence-type">模型对照评测</span>{projectHighlights.growthos.modelEvaluation}<span className="five-evidence-type">工程回归测试</span>{projectHighlights.growthos.engineeringTests}</> : <>{projectHighlights[project.slug].validationType ? <span className="five-evidence-type">{projectHighlights[project.slug].validationType}</span> : null}{projectHighlights[project.slug].validation}</>}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
+          <div className="five-project-main">
+            <div className="five-project-copy" style={{ "--project-accent": stageAccent[project.accent] } as CSSProperties}>
+              <span className="five-project-meta">{project.index} / {project.status}</span>
+              <ViewTransition name={`project-title-${project.slug}`} share="project-title-morph" default="none"><h3>{project.title}</h3></ViewTransition>
+              <p className="five-project-lead">{project.shortDescription}</p>
+              <p className="five-project-description">{project.description}</p>
+              <div className="five-flow" aria-label={`${project.title}核心工作流`}>{flow.map((step, index) => <span key={step}><i>{String(index + 1).padStart(2, "0")}</i>{step}</span>)}</div>
+            </div>
+            <div className="five-project-visual">
+              <Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-project-image-link" aria-label={`查看 ${project.title} 完整案例`}>
+                <ViewTransition name={`project-image-${project.slug}`} share="project-image-morph" default="none"><figure>
+                  {image.src ? <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 100vw, 52vw" loading="eager" /> : <ProductPreview variant="evidra" compact />}
+                  <figcaption>{image.caption}{image.src ? " · 真实产品界面" : null}<span aria-hidden="true">↗</span></figcaption>
+                </figure></ViewTransition>
+              </Link>
+              <p className="five-visual-note"><span>产品现场</span><i />{project.category}</p>
+            </div>
+          </div>
+          <dl className="five-project-highlights"><div><dt>我负责</dt><dd>{projectHighlights[project.slug].responsibility}</dd></div><div><dt>验证证据</dt><dd>{project.slug === "growthos" ? <><span className="five-evidence-type">模型对照评测</span>{projectHighlights.growthos.modelEvaluation}<span className="five-evidence-type">工程回归测试</span>{projectHighlights.growthos.engineeringTests}</> : <>{projectHighlights[project.slug].validationType ? <span className="five-evidence-type">{projectHighlights[project.slug].validationType}</span> : null}{projectHighlights[project.slug].validation}</>}</dd></div><div><dt>人机与风险</dt><dd>{projectHighlights[project.slug].boundary}</dd></div></dl>
           <div className="five-project-links"><Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-dark-link">完整项目介绍与案例 <span aria-hidden="true">↗</span></Link>{project.demoUrl ? project.slug === "growthos" ? <GrowthOSExperienceLink /> : <a href={project.demoUrl} target="_blank" rel="noreferrer">在线体验 <span aria-hidden="true">↗</span></a> : null}{project.githubUrl ? <a href={project.githubUrl} target="_blank" rel="noreferrer">源码 <span aria-hidden="true">↗</span></a> : null}</div>
           {project.slug === "growthos" ? <p className="five-preview-access-note">GrowthOS 在线体验需要登录；项目案例页提供完整操作截图与流程说明。</p> : null}
-          </div>
-          <div className="five-project-visual">
-            <Link href={`/work/${project.slug}`} onNavigate={markProjectNavigation} transitionTypes={["project-open"]} className="five-project-image-link" aria-label={`查看 ${project.title} 完整案例`}>
-              <ViewTransition name={`project-image-${project.slug}`} share="project-image-morph" default="none"><figure>
-                {image.src ? <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 100vw, 52vw" loading="eager" /> : <ProductPreview variant="evidra" compact />}
-                <figcaption>{image.caption}{image.src ? " · 真实产品界面" : null}<span aria-hidden="true">↗</span></figcaption>
-              </figure></ViewTransition>
-            </Link>
-            <p className="five-visual-note"><span>产品现场</span><i />{project.category}</p>
-          </div>
         </article>
       </div>
     </div>
