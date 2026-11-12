@@ -28,7 +28,7 @@ const wallNotes: Record<string, { eyebrow: string; statement: string; proof: str
   evidra: {
     eyebrow: "内容审查 / 编辑闭环",
     statement: "把文章主张、原文证据、修改建议和再次检查放进作者可控的审查工作流。",
-    proof: "历史 Preview 记录展示同一篇文章一次修改与再次检查从 75 → 86 的变化；证据用于定位原文依据。",
+    proof: "源码与回归覆盖再次检查及状态恢复；证据用于定位原文依据，尚无可追溯的原始评分对照记录。",
     flow: ["主张", "证据", "修改", "复核"],
   },
 };

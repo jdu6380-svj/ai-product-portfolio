@@ -52,10 +52,10 @@ export const projects: Project[] = [
       { title: "再次检查", description: "在修改之后展示发生了什么变化。", detail: "这让作者有理由继续迭代，也比单一分数更能感知进展。", tone: "accent-slate" },
     ],
     iterations: [
-      { version: "MVP", title: "以证据为先的审查工作流", detail: "在线 MVP 可运行文章分析、逐项诊断、证据明细、建议清单、人工修改与再次检查。" }, { version: "验收记录", title: "复查比较与状态恢复", detail: "已完成一次非敏感示例操作验收：总分 76 → 73，各维度方向不同；刷新后报告、比较结果与完成状态保持一致。" }, { version: "下一阶段", title: "目标用户与模型来源验证", detail: "围绕目标用户任务与模型来源记录，继续积累可复核的产品证据。" },
+      { version: "MVP", title: "以证据为先的审查工作流", detail: "在线 MVP 可运行文章分析、逐项诊断、证据明细、建议清单、人工修改与再次检查。" }, { version: "验收记录", title: "复查比较与状态恢复", detail: "非敏感示例流程覆盖报告刷新、比较结果与完成状态恢复；未找到可追溯的原始评分对照记录，因此不展示分数变化。" }, { version: "下一阶段", title: "目标用户与模型来源验证", detail: "围绕目标用户任务与模型来源记录，继续积累可复核的产品证据。" },
     ],
-    validation: { targetUsers: "中文长文创作者、内容顾问与小型内容团队（产品定位）", realAnalyses: "历史 Preview 示例记录：同篇文章 75 → 86", sessions: "单篇文章审查与编辑工作流", majorIterations: "再次检查状态语义与本地历史" },
-    validationEvidence: ["历史 Preview 记录：内容评分 75 → 86，按相同工作流完成修改与再次检查", "再次检查状态与比较摘要有代码提交和历史回归记录", "证据状态单独呈现，用于定位文章内部原文依据"],
+    validation: { targetUsers: "中文长文创作者、内容顾问与小型内容团队（产品定位）", realAnalyses: "非敏感示例流程验收；没有可追溯的原始评分对照记录", sessions: "单篇文章审查与编辑工作流", majorIterations: "再次检查状态语义与本地历史" },
+    validationEvidence: ["源码与回归覆盖再次检查状态、缓存恢复、错误处理和比较摘要", "项目界面展示文章分析、证据定位、建议确认与再次检查流程", "证据状态用于定位文章内部原文依据，不等同外部事实核验"],
     beforeAfter: { before: "内容作者需要自行判断哪些主张缺少支撑。", after: "产品方向：把主张、证据、修改建议和复核放进一条路径。", lesson: "这是产品问题与方案方向的对照，不代表未经确认的历史版本记录。" },
     githubUrl: "https://github.com/jdu6380-svj/geo-content-checker",
     demoUrl: "https://geo-content-checker-5cgngf0zy.vercel.app/",

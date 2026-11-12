@@ -400,6 +400,14 @@ html.portfolio-home-route body { background: var(--paper); }
   font-weight: 650;
   letter-spacing: .02em;
 }
+.five-view .five-project-highlights dd .five-evidence-type:not(:first-child) { margin-top: 8px; }
+.five-view .five-preview-access-note {
+  max-width: 520px;
+  margin: 8px 0 0;
+  color: #46536a;
+  font-size: 13px;
+  line-height: 1.55;
+}
 .five-view .five-project-links a {
   min-height: 44px;
   display: inline-flex;
