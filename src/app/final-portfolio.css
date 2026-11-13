@@ -410,7 +410,7 @@ body.scene-curtain-revealing .five-about .five-about-chapters { animation: curta
 .five-about-chapters article { display: grid; grid-template-columns: 34px minmax(170px, .32fr) minmax(0, 1fr); gap: 24px; align-items: start; min-height: 0; padding: 24px 8px 18px 0; border-bottom: 1px solid var(--portfolio-line); }
 .five-about-chapters article > span { color: var(--accent); font-family: var(--mono); font-size: 11px; line-height: 1.6; }
 .five-about-chapters h3 { margin: 0; color: var(--ink); font-size: 21px; font-weight: 650; line-height: 1.35; }
-.five-about-chapters p { max-width: 68ch; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
+.five-about-chapters p { max-width: 68ch; margin: 0; color: #465268; font-size: 17px; font-weight: 500; line-height: 1.8; }
 .five-text-link { display: inline-flex; width: fit-content; align-items: center; gap: 10px; margin-top: 28px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: none; }
 .five-text-link span { transition: transform 180ms ease; }
 .five-text-link:hover span { transform: translateY(3px); }
@@ -424,7 +424,7 @@ body.scene-curtain-revealing .five-about .five-about-chapters { animation: curta
   .five-about-identity { margin-top: 0; font-size: 16px; }
   .five-about-chapters article { padding-block: 18px; }
   .five-about-chapters h3 { font-size: 19px; }
-  .five-about-chapters p { margin-top: 9px; font-size: 15px; line-height: 1.72; }
+  .five-about-chapters p { margin-top: 9px; font-size: 16px; line-height: 1.72; }
 }
 
 .five-view > .scroll-reveal.contact-transition-reveal[data-ready="true"] {
