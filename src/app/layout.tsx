@@ -12,6 +12,7 @@ import "./readability-pass.css";
 import "./visual-hierarchy.css";
 import "./portfolio-second-pass.css";
 import "./project-transitions.css";
+import "./typography-hierarchy.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-product-portfolio-khaki.vercel.app"),

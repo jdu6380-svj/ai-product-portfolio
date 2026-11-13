@@ -1,0 +1,287 @@
+/* Typography hierarchy pass for content-heavy surfaces.
+   Hero, About and Contact stay outside these selectors. */
+
+/* Homepage project introduction, practice and insights. */
+.five-view .five-projects,
+.five-view .five-method,
+.five-view .five-thinking {
+  --type-section-title: clamp(2.6rem, 3.2vw, 3.6rem);
+  --type-section-note: clamp(1.04rem, 1.25vw, 1.12rem);
+  --type-project-title: clamp(3.2rem, 4.9vw, 4.9rem);
+  --type-project-lead: clamp(1.18rem, 1.5vw, 1.3rem);
+  --type-copy: 1.08rem;
+}
+
+.five-view .five-projects .five-section-head h2,
+.five-view .five-method .five-section-head h2,
+.five-view .five-thinking .five-section-head h2 {
+  font-size: var(--type-section-title);
+  font-weight: 620;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+
+.five-view .five-projects .five-section-head > p,
+.five-view .five-method .five-section-head > p,
+.five-view .five-thinking .five-section-head > p {
+  color: #4f5d70;
+  font-size: var(--type-section-note);
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.five-view .five-project-tabs button strong {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.five-view .five-project-tabs button small {
+  color: #586579;
+  font-size: 14px;
+  font-weight: 520;
+  line-height: 1.45;
+}
+
+.five-view .five-project-copy h3 {
+  font-size: var(--type-project-title);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -.065em;
+}
+
+.five-view .five-project-lead {
+  color: #27344a;
+  font-size: var(--type-project-lead);
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.five-view .five-project-description,
+.five-view .five-preview-access-note {
+  color: #4c5a6e;
+  font-size: var(--type-copy);
+  font-weight: 450;
+  line-height: 1.72;
+}
+
+.five-view .five-flow span {
+  color: #35445a;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.five-view .five-project-highlights dt {
+  color: #3154c6;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.4;
+}
+
+.five-view .five-project-highlights dd {
+  color: #4c5a6e;
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1.72;
+}
+
+.five-view .five-project-highlights dd .five-evidence-type {
+  color: #3154c6;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Method stages: English label is metadata, Chinese label is the stage title. */
+.five-view .five-method .build-method-rail button > strong {
+  color: #3154c6;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: .02em;
+  line-height: 1.35;
+}
+
+.five-view .five-method .build-method-rail button > b {
+  color: #182337;
+  font-size: 18px;
+  font-weight: 680;
+  line-height: 1.35;
+}
+
+.five-view .five-method .build-method-rail button > small {
+  color: #586579;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 1.55;
+}
+
+.five-view .five-method .build-method-detail-heading h3 {
+  color: #182337;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  font-weight: 560;
+  line-height: 1.12;
+  letter-spacing: -.045em;
+}
+
+.five-view .five-method .build-method-detail-heading p,
+.five-view .five-method .build-method-detail-columns li,
+.five-view .five-method .build-method-detail-columns p,
+.five-view .five-method .build-method-example p {
+  color: #4c5a6e;
+  font-size: 17px;
+  font-weight: 450;
+  line-height: 1.75;
+}
+
+.five-view .five-method .build-method-detail-columns h4,
+.five-view .five-method .build-method-example h4 {
+  color: #3154c6;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Insights: questions lead, summaries support, keywords recede. */
+.five-view .thinking-perspective-topic {
+  color: #3154c6;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.five-view .thinking-perspective-number {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.five-view .thinking-perspective-content h3 {
+  color: #182337;
+  font-size: clamp(1.55rem, 2.25vw, 2rem);
+  font-weight: 680;
+  line-height: 1.28;
+  letter-spacing: -.035em;
+}
+
+.five-view .thinking-perspective-content > p {
+  color: #4c5a6e;
+  font-size: 17px;
+  font-weight: 450;
+  line-height: 1.78;
+}
+
+.five-view .thinking-perspective-keywords li {
+  color: #596579;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.35;
+}
+
+/* Long-form case studies use the same editorial scale. */
+.case-hero h1 {
+  font-size: clamp(3.4rem, 6vw, 6.4rem);
+  font-weight: 500;
+  line-height: .92;
+  letter-spacing: -.075em;
+}
+
+.case-story-content .case-section h2 {
+  color: #182337;
+  font-size: clamp(2.3rem, 3.8vw, 3.8rem);
+  font-weight: 520;
+  line-height: 1.05;
+  letter-spacing: -.055em;
+}
+
+.case-story-content .case-body {
+  color: #4c5a6e;
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 1.78;
+}
+
+.case-story-content .story-side-note p,
+.case-story-content .story-visual-heading p,
+.case-story-content .case-context-grid p,
+.case-story-content .case-product-decisions p,
+.case-story-content .contribution-grid p,
+.case-story-content .validation-evidence p {
+  color: #536176;
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1.75;
+}
+
+.case-story-content .case-section h3,
+.case-story-content .story-test-cases article h3,
+.case-story-content .iteration-story-list h3 {
+  color: #182337;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.025em;
+}
+
+.case-story-content .case-section .section-kicker,
+.case-story-content .overview-facts span,
+.case-story-content .case-human-boundary strong {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1.4;
+}
+
+.case-story-content .overview-facts strong,
+.case-story-content .case-context-grid > div > span,
+.case-story-content .case-product-decisions > span {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.case-nav a {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .five-view .five-projects .five-section-head h2,
+  .five-view .five-method .five-section-head h2,
+  .five-view .five-thinking .five-section-head h2 {
+    font-size: 2.4rem;
+    line-height: 1.12;
+  }
+
+  .five-view .five-project-tabs button strong { font-size: 16px; }
+  .five-view .five-project-tabs button small { font-size: 13px; }
+  .five-view .five-project-copy h3 { font-size: clamp(2.95rem, 14vw, 3.7rem); }
+  .five-view .five-project-lead { font-size: 18px; }
+  .five-view .five-project-description,
+  .five-view .five-preview-access-note { font-size: 16px; }
+  .five-view .five-flow span { font-size: 14px; }
+  .five-view .five-project-highlights dd { font-size: 15px; }
+  .five-view .five-method .build-method-rail button > b { font-size: 16px; }
+  .five-view .five-method .build-method-rail button > small { font-size: 13px; }
+  .five-view .five-method .build-method-detail-heading h3 { font-size: 2rem; }
+  .five-view .five-method .build-method-detail-heading p,
+  .five-view .five-method .build-method-detail-columns li,
+  .five-view .five-method .build-method-detail-columns p,
+  .five-view .five-method .build-method-example p { font-size: 16px; }
+  .five-view .thinking-perspective-content h3 { font-size: 20px; }
+  .five-view .thinking-perspective-content > p { font-size: 16px; line-height: 1.75; }
+  .five-view .thinking-perspective-keywords li { font-size: 12px; }
+  .case-hero h1 { font-size: clamp(3.3rem, 17vw, 5.2rem); }
+  .case-story-content .case-section h2 { font-size: clamp(2.1rem, 10.5vw, 3.2rem); }
+  .case-story-content .case-body { font-size: 16px; }
+  .case-story-content .story-side-note p,
+  .case-story-content .story-visual-heading p,
+  .case-story-content .case-context-grid p,
+  .case-story-content .case-product-decisions p,
+  .case-story-content .contribution-grid p,
+  .case-story-content .validation-evidence p { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Typography-only pass: no new motion is introduced. */
+}
