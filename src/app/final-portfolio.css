@@ -414,7 +414,7 @@ body.scene-curtain-revealing .five-about .five-about-chapters { animation: curta
 .five-text-link { display: inline-flex; width: fit-content; align-items: center; gap: 10px; margin-top: 28px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: none; }
 .five-text-link span { transition: transform 180ms ease; }
 .five-text-link:hover span { transform: translateY(3px); }
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .five-about-chapters { grid-template-columns: 1fr; }
   .five-about-chapters article { min-height: 0; padding-block: 20px; }
   .five-about-chapters p { max-width: 62ch; }
