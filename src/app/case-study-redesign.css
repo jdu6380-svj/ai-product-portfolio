@@ -18,16 +18,24 @@
 .case-human-boundary strong { display: block; margin-bottom: 8px; color: var(--story-accent); font-size: var(--type-case-meta); }
 .case-story-content .contribution-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
 .case-story-content .contribution-grid p { max-width: 54ch; }
-.case-nav .case-nav-priority {
+.case-nav a {
   border: 1px solid color-mix(in srgb, var(--story-accent) 28%, transparent);
   background: color-mix(in srgb, var(--story-accent) 8%, white);
   color: var(--story-accent);
   font-weight: 650;
 }
-.case-nav .case-nav-priority:hover,
-.case-nav .case-nav-priority:focus-visible {
+.case-nav a:hover,
+.case-nav a:focus-visible {
   background: color-mix(in srgb, var(--story-accent) 14%, white);
   color: var(--story-accent);
+  box-shadow: 0 5px 14px color-mix(in srgb, var(--story-accent) 14%, transparent);
+  transform: translateY(-1px);
+}
+.case-nav a[aria-current="location"] {
+  border-color: color-mix(in srgb, var(--story-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--story-accent) 18%, white);
+  color: var(--story-accent);
+  box-shadow: inset 0 -2px 0 var(--story-accent);
 }
 .case-preview-access-note { color: var(--muted); font-size: 14px; line-height: 1.55; }
 .case-preview-access-note a { display: inline-block; margin-left: 8px; color: var(--story-accent); text-decoration: underline; text-underline-offset: 3px; }
