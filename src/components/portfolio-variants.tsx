@@ -69,9 +69,9 @@ function FiveAbout() {
       <SceneHeader id="five-about-title" label="01 / About" title="关于我" note="从业务实践，到 AI 产品设计。" />
       <p className="five-about-identity">杜嘉奇 <span>·</span> AI 产品经理方向</p>
       <div className="five-about-chapters">
-        <article><span>01</span><div><h3>从真实业务出发</h3><p>曾独立运营 TikTok Shop 女装及配饰业务，接触选品、商品转化、广告投放与数据分析。在真实业务中，我逐渐开始关注用户需求、流程效率和增长问题。</p></div></article>
-        <article><span>02</span><div><h3>转向 AI 产品实践</h3><p>从业务问题出发，开始探索 AI 如何解决实际问题，并独立规划和设计三个 AI 产品项目，覆盖知识问答、内容工作流与内容可信度审查。</p></div></article>
-        <article><span>03</span><div><h3>建立产品判断</h3><p>不只关注模型能否生成结果，也关注结果是否可靠、流程是否可控、用户能否真正使用。通过规则设计、测试评估和问题归因持续完善产品方案。</p></div></article>
+        <article><span>01</span><h3>从真实业务出发</h3><p>曾独立运营 TikTok Shop 女装及配饰业务，接触选品、商品转化、广告投放与数据分析。在真实业务中，我逐渐开始关注用户需求、流程效率和增长问题。</p></article>
+        <article><span>02</span><h3>转向 AI 产品实践</h3><p>从业务问题出发，开始探索 AI 如何解决实际问题，并独立规划和设计三个 AI 产品项目，覆盖知识问答、内容工作流与内容可信度审查。</p></article>
+        <article><span>03</span><h3>建立产品判断</h3><p>不只关注模型能否生成结果，也关注结果是否可靠、流程是否可控、用户能否真正使用。通过规则设计、测试评估和问题归因持续完善产品方案。</p></article>
       </div>
       <a className="five-text-link" href="#project-introduction">认识三个项目 <span aria-hidden="true">↓</span></a>
     </div>

@@ -406,24 +406,23 @@ body.scene-curtain-revealing .five-about .five-about-chapters { animation: curta
 .five-about .five-container { display: flex; min-height: 100svh; flex-direction: column; justify-content: center; padding: 90px 0 92px; }
 .five-about-identity { margin: -10px 0 34px; color: var(--ink); font-size: 18px; font-weight: 600; line-height: 1.5; }
 .five-about-identity span { margin-inline: 7px; color: var(--accent); }
-.five-about-chapters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 28px; border-top: 1px solid var(--portfolio-line); }
-.five-about-chapters article { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 13px; min-height: 220px; padding: 24px 8px 18px 0; border-bottom: 1px solid var(--portfolio-line); }
+.five-about-chapters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; border-top: 1px solid var(--portfolio-line); }
+.five-about-chapters article { display: grid; grid-template-columns: 34px minmax(170px, .32fr) minmax(0, 1fr); gap: 24px; align-items: start; min-height: 0; padding: 24px 8px 18px 0; border-bottom: 1px solid var(--portfolio-line); }
 .five-about-chapters article > span { color: var(--accent); font-family: var(--mono); font-size: 11px; line-height: 1.6; }
 .five-about-chapters h3 { margin: 0; color: var(--ink); font-size: 21px; font-weight: 650; line-height: 1.35; }
-.five-about-chapters p { max-width: 33ch; margin: 13px 0 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
+.five-about-chapters p { max-width: 68ch; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
 .five-text-link { display: inline-flex; width: fit-content; align-items: center; gap: 10px; margin-top: 28px; color: var(--accent); font-size: 14px; font-weight: 650; text-decoration: none; }
 .five-text-link span { transition: transform 180ms ease; }
 .five-text-link:hover span { transform: translateY(3px); }
 @media (max-width: 700px) {
-  .five-about-chapters { grid-template-columns: 1fr; }
-  .five-about-chapters article { min-height: 0; padding-block: 20px; }
-  .five-about-chapters p { max-width: 62ch; }
+  .five-about-chapters article { grid-template-columns: 28px minmax(0, 1fr); gap: 9px 12px; padding-block: 20px; }
+  .five-about-chapters p { grid-column: 2; max-width: 62ch; }
 }
 
 @media (max-width: 600px) {
   .five-about .five-container { min-height: 100svh; padding: 75px 0 76px; }
   .five-about-identity { margin-top: 0; font-size: 16px; }
-  .five-about-chapters article { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding-block: 18px; }
+  .five-about-chapters article { padding-block: 18px; }
   .five-about-chapters h3 { font-size: 19px; }
   .five-about-chapters p { margin-top: 9px; font-size: 15px; line-height: 1.72; }
 }

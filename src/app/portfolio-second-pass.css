@@ -501,15 +501,15 @@ html.portfolio-home-route body { background: var(--paper); }
 
 /* Give the three About chapters the same quiet surface depth as the insight rows. */
 .five-view .five-about-chapters {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
   border-top: 0;
 }
 .five-view .five-about-chapters article {
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 13px;
+  grid-template-columns: 34px minmax(170px, .32fr) minmax(0, 1fr);
+  gap: 24px;
   min-height: 0;
-  padding: clamp(25px, 3.8vw, 46px);
+  padding: clamp(24px, 3.4vw, 36px);
   border: 1px solid rgba(99, 119, 151, .12);
   border-radius: 24px;
   background: linear-gradient(135deg, rgba(255, 255, 255, .84), rgba(255, 255, 255, .64));
@@ -517,11 +517,11 @@ html.portfolio-home-route body { background: var(--paper); }
 }
 .five-view .five-about-chapters p { max-width: 68ch; }
 @media (max-width: 700px) {
-  .five-view .five-about-chapters { grid-template-columns: minmax(0, 1fr); }
+  .five-view .five-about-chapters article { grid-template-columns: 28px minmax(0, 1fr); gap: 9px 12px; }
 }
 @media (max-width: 600px) {
   .five-view .five-about-chapters { gap: 11px; }
-  .five-view .five-about-chapters article { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 22px 20px; }
+  .five-view .five-about-chapters article { padding: 22px 20px; }
 }
 
 /* Keep the method selector tied to the portfolio's blue accent across breakpoints. */
