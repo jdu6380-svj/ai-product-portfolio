@@ -514,6 +514,14 @@ html.portfolio-home-route body { background: var(--paper); }
   border-radius: 24px;
   background: linear-gradient(135deg, rgba(255, 255, 255, .84), rgba(255, 255, 255, .64));
   box-shadow: 0 16px 46px rgba(47, 66, 101, .065);
+  transition: transform 260ms cubic-bezier(.2, .72, .18, 1), box-shadow 260ms ease, border-color 260ms ease;
+}
+@media (hover: hover) {
+  .five-view .five-about-chapters article:hover {
+    transform: translateY(-2px);
+    border-color: rgba(49, 92, 245, .22);
+    box-shadow: 0 22px 54px rgba(47, 66, 101, .095);
+  }
 }
 .five-view .five-about-chapters p { max-width: 68ch; }
 @media (max-width: 700px) {
@@ -522,6 +530,10 @@ html.portfolio-home-route body { background: var(--paper); }
 @media (max-width: 600px) {
   .five-view .five-about-chapters { gap: 11px; }
   .five-view .five-about-chapters article { padding: 22px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .five-view .five-about-chapters article { transition: none; }
+  .five-view .five-about-chapters article:hover { transform: none; }
 }
 
 /* Keep the method selector tied to the portfolio's blue accent across breakpoints. */
