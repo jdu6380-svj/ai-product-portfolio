@@ -12,15 +12,17 @@
 }
 
 ::view-transition-image-pair(.project-image-morph) {
-  animation: project-image-soften 520ms cubic-bezier(.22, .72, .18, 1) both;
+  /* Large product screenshots stay sharp during the route morph so the
+     browser does not repeatedly blur and re-rasterize the full image. */
+  animation: none;
 }
 
 ::view-transition-old(.project-content-out) {
-  animation: project-content-exit 200ms cubic-bezier(.4, 0, 1, 1) both;
+  animation: project-content-exit 160ms cubic-bezier(.4, 0, 1, 1) both;
 }
 
 ::view-transition-new(.project-content-in) {
-  animation: project-content-enter 330ms 110ms cubic-bezier(.22, .72, .18, 1) both;
+  animation: project-content-enter 260ms 60ms cubic-bezier(.22, .72, .18, 1) both;
 }
 
 ::view-transition-old(.project-content-out),
@@ -31,25 +33,20 @@
 }
 
 ::view-transition-old(.project-content-return) {
-  animation: project-content-exit 190ms cubic-bezier(.4, 0, 1, 1) both;
+  animation: project-content-exit 150ms cubic-bezier(.4, 0, 1, 1) both;
 }
 
 ::view-transition-new(.project-content-return) {
-  animation: project-content-enter 320ms 100ms cubic-bezier(.22, .72, .18, 1) both;
+  animation: project-content-enter 250ms 50ms cubic-bezier(.22, .72, .18, 1) both;
 }
 
 @keyframes project-content-exit {
-  to { opacity: 0; filter: blur(2px); }
+  to { opacity: 0; }
 }
 
 @keyframes project-content-enter {
-  from { opacity: 0; filter: blur(2px); transform: translateY(10px); }
-  to { opacity: 1; filter: blur(0); transform: translateY(0); }
-}
-
-@keyframes project-image-soften {
-  35% { filter: blur(1.5px); }
-  to { filter: blur(0); }
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes project-route-fallback {
