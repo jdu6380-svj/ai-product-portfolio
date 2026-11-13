@@ -31,6 +31,8 @@
 }
 .case-preview-access-note { color: var(--muted); font-size: 14px; line-height: 1.55; }
 .case-preview-access-note a { display: inline-block; margin-left: 8px; color: var(--story-accent); text-decoration: underline; text-underline-offset: 3px; }
+.case-story-content .story-visual-grid .story-visual-open-hint { display: flex; min-height: 32px; align-items: center; justify-content: flex-end; padding: 5px 14px; color: var(--story-accent); font-size: 13px; font-weight: 600; line-height: 1.4; }
+.case-story-content .story-visual-grid figure > a:focus-visible { outline: 2px solid var(--story-accent); outline-offset: -2px; }
 .case-hero-links > a { min-height: 44px; font-size: 13px; }
 @media (max-width: 900px) {
   .overview-facts { grid-template-columns: 1fr 1fr; }
