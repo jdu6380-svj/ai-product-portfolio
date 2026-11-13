@@ -31,7 +31,7 @@ export function ProjectTransitionFallback({ page }: ProjectTransitionFallbackPro
     const onPopState = () => markProjectReturn();
     const onReturnLink = (event: MouseEvent) => {
       if (!(event.target instanceof Element)) return;
-      if (event.target.closest("a.back-link[href^='/#five-projects']")) markProjectReturn();
+      if (event.target.closest("a.back-link[href^='/#project-introduction']")) markProjectReturn();
     };
     if (page === "detail") {
       window.addEventListener("popstate", onPopState);

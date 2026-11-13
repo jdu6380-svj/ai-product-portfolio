@@ -10,8 +10,8 @@ export function SiteHeader() {
           <span>杜嘉奇</span>
         </Link>
         <nav className="main-nav" aria-label="主导航">
-          <Link href="/#five-projects">项目展示</Link>
-          <Link href="/#method">产品构建</Link>
+          <Link href="/#project-introduction">项目介绍</Link>
+          <Link href="/#project-practice">项目实践</Link>
           <Link href="/#thinking">产品思考</Link>
           <Link className="mobile-contact-link" href="/#contact">联系</Link>
         </nav>

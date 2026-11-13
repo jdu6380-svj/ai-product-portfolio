@@ -499,25 +499,90 @@ html.portfolio-home-route body { background: var(--paper); }
   .five-view .build-method-detail { animation: none; }
 }
 
+/* Give the three About chapters the same quiet surface depth as the insight rows. */
+.five-view .five-about-chapters {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  border-top: 0;
+}
+.five-view .five-about-chapters article {
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 13px;
+  min-height: 0;
+  padding: clamp(25px, 3.8vw, 46px);
+  border: 1px solid rgba(99, 119, 151, .12);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .84), rgba(255, 255, 255, .64));
+  box-shadow: 0 16px 46px rgba(47, 66, 101, .065);
+}
+.five-view .five-about-chapters p { max-width: 68ch; }
+@media (max-width: 900px) {
+  .five-view .five-about-chapters { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .five-view .five-about-chapters { gap: 11px; }
+  .five-view .five-about-chapters article { grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 22px 20px; }
+}
+
 /* Keep the method selector tied to the portfolio's blue accent across breakpoints. */
 .five-view .five-method .build-method-rail button > span,
 .five-view .five-method .build-method-rail button[aria-selected="true"] > span {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: #315cf5;
+  color: #315cf5;
+}
+.five-view .five-method .build-method-rail button:not([aria-selected="true"]) > span {
+  background: #fff;
 }
 .five-view .five-method .build-method-rail button[aria-selected="true"] > span {
-  background: var(--accent);
+  background: #315cf5;
   color: #fff;
 }
 .five-view .five-method .build-method-rail button[aria-selected="true"] {
-  border-color: color-mix(in srgb, var(--accent) 48%, transparent);
+  border-color: color-mix(in srgb, #315cf5 48%, transparent);
 }
 .five-view .five-method .build-method-rail button[aria-selected="true"]::after {
-  background: var(--accent);
+  background: #315cf5;
+}
+.five-view .five-method .build-method-rail button > i { border-color: #315cf5; }
+.five-view .five-contact .five-email[download] { transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
+.five-view .five-contact .five-email[download]:hover,
+.five-view .five-contact .five-email[download]:focus-visible {
+  border-color: var(--accent-ink);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.five-view .five-contact .five-copy-email:hover,
+.five-view .five-contact .five-copy-email:focus-visible {
+  border-color: var(--accent-ink);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
 }
 .five-view .five-method .build-method-detail > .build-method-example {
   grid-column: 1 / -1;
   width: 100%;
+}
+
+.five-view .thinking-contact-cue {
+  display: inline-flex;
+  min-height: 44px;
+  margin: 28px 0 0;
+}
+.five-view .thinking-contact-cue:hover span,
+.five-view .thinking-contact-cue:focus-visible span { transform: translateY(3px); }
+.five-view .thinking-contact-cue:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  :is(.five-view, .case-story-content) [data-cloud-ready="true"] {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(4px);
+    transition: opacity 840ms cubic-bezier(.2, .7, .2, 1), transform 840ms cubic-bezier(.2, .7, .2, 1), filter 840ms ease;
+  }
+  :is(.five-view, .case-story-content) [data-cloud-ready="true"][data-cloud-shown="true"] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }
 
 @media (min-width: 901px) {

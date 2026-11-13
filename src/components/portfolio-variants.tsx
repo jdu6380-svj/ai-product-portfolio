@@ -14,6 +14,7 @@ import { ProductPreview } from "@/components/product-preview";
 import { GrowthOSExperienceLink } from "@/components/growthos-experience-link";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { ContentCloudReveal } from "@/components/content-cloud-reveal";
 import { useProjectSelection } from "@/components/portfolio-navigation";
 import { projectTransitionMedia } from "@/content/project-transition-media";
 
@@ -62,6 +63,21 @@ function FiveHero() {
   </section>;
 }
 
+function FiveAbout() {
+  return <section className="five-section five-about" id="five-projects" aria-labelledby="five-about-title">
+    <div className="five-container">
+      <SceneHeader id="five-about-title" label="01 / About" title="关于我" note="从业务实践，到 AI 产品设计。" />
+      <p className="five-about-identity">杜嘉奇 <span>·</span> AI 产品经理方向</p>
+      <div className="five-about-chapters">
+        <article><span>01</span><div><h3>从真实业务出发</h3><p>曾独立运营 TikTok Shop 女装及配饰业务，接触选品、商品转化、广告投放与数据分析。在真实业务中，我逐渐开始关注用户需求、流程效率和增长问题。</p></div></article>
+        <article><span>02</span><div><h3>转向 AI 产品实践</h3><p>从业务问题出发，开始探索 AI 如何解决实际问题，并独立规划和设计三个 AI 产品项目，覆盖知识问答、内容工作流与内容可信度审查。</p></div></article>
+        <article><span>03</span><div><h3>建立产品判断</h3><p>不只关注模型能否生成结果，也关注结果是否可靠、流程是否可控、用户能否真正使用。通过规则设计、测试评估和问题归因持续完善产品方案。</p></div></article>
+      </div>
+      <a className="five-text-link" href="#project-introduction">认识三个项目 <span aria-hidden="true">↓</span></a>
+    </div>
+  </section>;
+}
+
 function FiveProjectStage() {
   const [activeIndex, setActiveIndex] = useProjectSelection();
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -90,9 +106,9 @@ function FiveProjectStage() {
       tabRefs.current[nextIndex]?.focus();
     }
   };
-  return <section className="five-section five-projects" id="five-projects" aria-labelledby="five-project-title">
+  return <section className="five-section five-projects" id="project-introduction" aria-labelledby="five-project-title">
     <div className="five-container">
-      <SceneHeader id="five-project-title" label="02 / 项目" title={<>三个项目，<em>三种工作任务。</em></>} note="选择一个项目，查看它的工作流、产品界面与验证记录。" />
+      <SceneHeader id="five-project-title" label="02 / Projects" title="项目介绍" note="选择一个项目，查看它的工作流、产品界面与验证记录。" />
       <div className="five-project-tabs" role="tablist" aria-label="选择精选项目">
         {projectOrder.map((slug, index) => {
           const item = projects.find((candidate) => candidate.slug === slug)!;
@@ -129,8 +145,8 @@ function FiveProjectStage() {
 }
 
 function FiveMethod() {
-  return <section className="five-section five-method" id="method" aria-labelledby="five-method-title">
-    <div className="five-container"><SceneHeader id="five-method-title" label="03 / How I Build Products" title={<>从问题出发，<em>以验证驱动迭代。</em></>} note="从问题定义到方案验证，持续推进 AI 产品落地。" /><BuildMethod /></div>
+  return <section className="five-section five-method" id="project-practice" aria-labelledby="five-method-title">
+    <div className="five-container" id="method"><SceneHeader id="five-method-title" label="03 / Project Practice" title={<>从问题出发，<em>以验证驱动迭代。</em></>} note="从问题定义到方案验证，持续推进 AI 产品落地。" /><BuildMethod /></div>
   </section>;
 }
 
@@ -163,6 +179,7 @@ function FiveContact() {
 function FiveView() {
   return (
     <div className="portfolio-variant five-view portfolio-scenes">
+      <ContentCloudReveal selector=".five-view .five-about-chapters > article, .five-view .five-project-tabs, .five-view .five-project-stage, .five-view .five-method .build-method-rail, .five-view .thinking-perspectives > article, .five-view .thinking-contact-cue" />
       <div className="five-space-field" aria-hidden="true">
         <div className="five-space-lights">
           <span className="five-space-light five-space-light-a" />
@@ -173,15 +190,16 @@ function FiveView() {
           {Array.from({ length: 10 }, (_, index) => <i key={index} />)}
         </div>
       </div>
-      <a className="skip-link" href="#five-projects">跳到项目展示</a>
+      <a className="skip-link" href="#five-projects">跳到关于我</a>
       <ScrollProgress />
       <ScrollReveal><FiveHero /></ScrollReveal>
+      <ScrollReveal><FiveAbout /></ScrollReveal>
       <ScrollReveal><FiveProjectStage /></ScrollReveal>
       <ScrollReveal><FiveMethod /></ScrollReveal>
       <ScrollReveal>
         <section className="five-section five-thinking" id="thinking" aria-labelledby="five-thinking-title">
           <div className="five-container">
-            <SceneHeader id="five-thinking-title" label="04 / Product Insights" title="产品观点与思考" note="围绕 AI 行业发展、产品价值与未来产品经理的能力变化，分享我的观察、判断与思考。" />
+            <SceneHeader id="five-thinking-title" label="04 / Product Insights" title="产品思考" note="围绕 AI 行业发展、产品价值与未来产品经理的能力变化，分享我的观察、判断与思考。" />
             <ProductThinking />
           </div>
         </section>

@@ -53,5 +53,6 @@ export function ProductThinking() {
         </div>
       </article>)}
     </div>
+    <a className="five-text-link thinking-contact-cue" href="#contact">联系我 <span aria-hidden="true">↓</span></a>
   </div>;
 }
